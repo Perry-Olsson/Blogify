@@ -19,8 +19,11 @@
     "save": "^2.4.0"
   },
   "scripts": {
+    "tester": "gnome-terminal && ls",
     "start": "react-scripts start",
+    "dev": "(cd server && npm run dev) & npm start",
     "build": "react-scripts build",
+    "serve-build": "npm run build && (cd server && npm start)",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
