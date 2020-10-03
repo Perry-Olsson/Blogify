@@ -20,10 +20,16 @@ const userReducer = (state = null, action) => {
 };
 
 export const setUser = user => {
-  blogService.setToken(user.token);
-  return {
-    type: 'SET',
-    user,
+  return dispatch => {
+    try {
+      blogService.setToken(user.token);
+      dispatch({
+        type: 'SET',
+        user,
+      });
+    } catch (e) {
+      dispatch(createNotification({ type: 'danger', message: e.message }, 5));
+    }
   };
 };
 
