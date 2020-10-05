@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { initializeBlogs } from './reducers/blogReducer';
-import { setUser } from './reducers/userReducer';
+import { initializeBlogs, setUser, createNotification } from './reducers';
 import { Switch, Route } from 'react-router-dom';
 import userService from './services/users';
-import Navigation from './components/navigation/Navigation';
-import BlogPage from './components/blogPage/BlogPage';
-import UserPage from './components/users/UserPage';
+import Navigation from './app/navigation/Navigation';
+import BlogPage from './app/blogPage/BlogPage';
+import UserPage from './app/users/UserPage';
+import { Container } from 'react-bootstrap';
 import './App.css';
-import { createNotification } from './reducers/notificationReducer';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,17 +32,19 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="container">
-      <h1 className="logo">Blogbook</h1>
-      <Navigation user={user} />
-      <Switch>
-        <Route path="/users">
-          <UserPage />
-        </Route>
-        <Route path="/">
-          <BlogPage user={user} />
-        </Route>
-      </Switch>
+    <div className="darkMode">
+      <Container>
+        <h1 className="logo">Blogbook</h1>
+        <Navigation user={user} />
+        <Switch>
+          <Route path="/users">
+            <UserPage />
+          </Route>
+          <Route path="/">
+            <BlogPage user={user} />
+          </Route>
+        </Switch>
+      </Container>
     </div>
   );
 };
