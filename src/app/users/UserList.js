@@ -1,6 +1,6 @@
-import React from 'react'
-import User from './User'
-import { ListGroup } from 'react-bootstrap'
+import React from 'react';
+import User from './User';
+import { ListGroup } from 'react-bootstrap';
 
 const UserList = ({ users }) => (
   <div>
@@ -17,6 +17,6 @@ const UserList = ({ users }) => (
       }
     </ListGroup>
   </div>
-)
+);
 
-export default UserList
+export default UserList;

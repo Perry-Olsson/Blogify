@@ -1,5 +1,5 @@
-import React from 'react'
-import Blog from './blog/Blog'
+import React from 'react';
+import Blog from './blog/Blog';
 
 const BlogList = ({ blogs, user }) => {
   return (
@@ -11,7 +11,7 @@ const BlogList = ({ blogs, user }) => {
           user={user ? user.username : ''}
         />)}
     </div>
-  )
-}
+  );
+};
 
-export default BlogList
+export default BlogList;

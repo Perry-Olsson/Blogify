@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initializeBlogs, setUser, createNotification } from './reducers';
 import { Switch, Route } from 'react-router-dom';
@@ -6,12 +6,20 @@ import userService from './services/users';
 import Navigation from './app/navigation/Navigation';
 import BlogPage from './app/blogPage/BlogPage';
 import UserPage from './app/users/UserPage';
-import { Container } from 'react-bootstrap';
+
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from './components/gobalStyles';
+import { lightMode, darkMode } from './components/themes';
 import './App.css';
 
 const App = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
+  const [theme, setTheme] = useState('light');
+
+  const themeToggler = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  };
 
   useEffect(() => {
     dispatch(initializeBlogs());
@@ -32,8 +40,10 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="darkMode">
-      <Container>
+    <ThemeProvider theme={theme === 'light' ? lightMode : darkMode}>
+      <GlobalStyles />
+      <div className="container">
+        <button onClick={themeToggler}>toggle</button>
         <h1 className="logo">Blogbook</h1>
         <Navigation user={user} />
         <Switch>
@@ -44,8 +54,8 @@ const App = () => {
             <BlogPage user={user} />
           </Route>
         </Switch>
-      </Container>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 };
 

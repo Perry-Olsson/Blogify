@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const UserProfile = ({ user }) => {
-  if(!user) return null
+  if(!user) return null;
   return (
     <div>
       <h2>{user.username}</h2>
@@ -12,7 +12,7 @@ const UserProfile = ({ user }) => {
         </ul>
         : <p>uh oh there&apos;s no blogs</p>}
     </div>
-  )
-}
+  );
+};
 
-export default UserProfile
+export default UserProfile;

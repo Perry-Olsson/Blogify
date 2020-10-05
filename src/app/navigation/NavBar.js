@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../reducers/userReducer';
 import { clearNotification } from '../../reducers/notificationReducer';
-import { Link } from 'react-router-dom';
+import StyledLink from '../../components/StyledLink';
 import { Button, Navbar, Nav } from 'react-bootstrap';
 
 const NavBar = ({ user }) => {
@@ -16,27 +16,22 @@ const NavBar = ({ user }) => {
     <Navbar
       collapseOnSelect
       expand="lg"
-      style={{ margin: '1em 0' }}
-      bg="dark"
-      variant="light"
+      style={{ margin: '1em 0', borderRadius: '2px' }}
+      className="navBar"
     >
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="#" as="div">
-            <Link style={{ color: 'white' }} to="/">
-              Blogs
-            </Link>
+            <StyledLink to="/">Blogs</StyledLink>
           </Nav.Link>
           <Nav.Link href="#" as="div">
-            <Link style={{ color: 'white' }} to="/users">
-              Users
-            </Link>
+            <StyledLink to="/users">Users</StyledLink>
           </Nav.Link>
         </Nav>
         <Nav>
-          <Nav.Link href="#" style={{ color: 'white', marginRight: '1em' }}>
-            logged in as {user.username}
+          <Nav.Link href="#" style={{ marginRight: '1em' }}>
+            <div className="navBar">logged in as {user.username}</div>
           </Nav.Link>
           <Button
             className="logout"

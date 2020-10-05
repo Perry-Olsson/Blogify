@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { Button } from 'react-bootstrap'
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
 
 const Togglable = (props) => {
-  const [visible, setVisible] = useState(props.visible)
+  const [visible, setVisible] = useState(props.visible);
 
-  const hideWhenVisible = { display: visible ? 'none' : '' }
-  const showWhenVisible = { display: visible ? '' : 'none' }
+  const hideWhenVisible = { display: visible ? 'none' : '' };
+  const showWhenVisible = { display: visible ? '' : 'none' };
 
-  const toggleVisibility = () => setVisible(!visible)
+  const toggleVisibility = () => setVisible(!visible);
 
   return (
     <>
@@ -20,13 +20,13 @@ const Togglable = (props) => {
         <Button onClick={toggleVisibility} variant='outline-dark' size={props.size || 'md'}>{props.buttonLabel}</Button>
       </div>
     </>
-  )
-}
+  );
+};
 
 Togglable.propTypes = {
   buttonLabel: PropTypes.string.isRequired
-}
+};
 
-Togglable.displayName = 'Togglable'
+Togglable.displayName = 'Togglable';
 
-export default Togglable
+export default Togglable;
