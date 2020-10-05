@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { initializeBlogs, setUser, createNotification } from './reducers';
+import { initializeBlogs, setUser, createNotification } from '../reducers';
 import { Switch, Route } from 'react-router-dom';
-import userService from './services/users';
-import Navigation from './app/navigation/Navigation';
-import BlogPage from './app/blogPage/BlogPage';
-import UserPage from './app/users/UserPage';
+import userService from '../services/users';
+import Navigation from './navigation/Navigation';
+import BlogPage from './blogPage/BlogPage';
+import UserPage from './users/UserPage';
 
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyles } from './components/gobalStyles';
-import { lightMode, darkMode } from './components/themes';
+import { GlobalStyles } from '../components/gobalStyles';
+import { lightMode, darkMode } from '../components/themes';
 import './App.css';
 
 const App = () => {

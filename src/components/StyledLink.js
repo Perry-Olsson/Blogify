@@ -1,8 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const Style = styled(Link)`
+const StyledLink = styled(Link)`
   color: ${({ theme }) => theme.navBar.text};
   padding: 0.2em 1em;
   border: solid 1px ${({ theme }) => theme.background};
@@ -14,9 +13,5 @@ const Style = styled(Link)`
     transition: 0.2s;
   }
 `;
-
-const StyledLink = ({ children, to }) => {
-  return <Style to={to}>{children}</Style>;
-};
 
 export default StyledLink;
