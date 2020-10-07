@@ -10,7 +10,7 @@ const Blogs = ({ user, blogs }) => (
         <AddBlog />
       </Togglable>
     )}
-    <hr className="margin-bottom" />
+    <hr style={{ marginTop: '1.5em' }} />
     {blogs && <BlogList blogs={blogs} user={user} />}
   </div>
 );

@@ -7,6 +7,9 @@ export const lightMode = {
     border: '#aaa',
     text: '#FFF',
   },
+  input: {
+    background: '#FFF',
+  },
 };
 
 export const darkMode = {
@@ -17,5 +20,8 @@ export const darkMode = {
   navBar: {
     border: '#393939',
     text: '#FFF',
+  },
+  input: {
+    background: '#555555',
   },
 };

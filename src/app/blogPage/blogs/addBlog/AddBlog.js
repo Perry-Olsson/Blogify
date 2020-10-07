@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addBlog } from '../../../../reducers/blogReducer';
 import { createNotification } from '../../../../reducers/notificationReducer';
 import blogService from '../../../../services/blogs';
+import { useField } from '../../../../hooks';
 import { Button } from 'react-bootstrap';
+import StyledInput from '../../../../components/StyledInput';
 import './AddBlog.css';
 
 const AddBlog = ({ toggleVisibility }) => {
   const dispatch = useDispatch();
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [url, setUrl] = useState('');
+  const [title, resetTitle] = useField('text', 'title');
+  const [author, resetAuthor] = useField('text', 'author');
+  const [url, resetUrl] = useField('text', 'url');
 
   const createBlog = async event => {
     event.preventDefault();
@@ -27,11 +29,11 @@ const AddBlog = ({ toggleVisibility }) => {
     } catch (exception) {
       exception.response
         ? dispatch(
-          createNotification(
-            { type: 'danger', message: exception.response.data.error },
-            5
+            createNotification(
+              { type: 'danger', message: exception.response.data.error },
+              5
+            )
           )
-        )
         : console.log(exception);
       return null;
     }
@@ -45,9 +47,9 @@ const AddBlog = ({ toggleVisibility }) => {
   };
 
   const clearForm = () => {
-    setTitle('');
-    setAuthor('');
-    setUrl('');
+    resetTitle();
+    resetAuthor();
+    resetUrl();
   };
 
   return (
@@ -56,38 +58,18 @@ const AddBlog = ({ toggleVisibility }) => {
       className="flex-column margin-bottom"
       onSubmit={createBlog}
     >
-      <h2 style={{ fontFamily: 'Anton, sans-serif', color: '#333333' }}>
-        New Blog
-      </h2>
+      <h2 style={{ fontFamily: 'Anton, sans-serif' }}>New Blog</h2>
       <label>title: </label>
-      <input
-        id="title"
-        type="text"
-        name="Title"
-        value={title}
-        onChange={({ target }) => setTitle(target.value)}
-      />
+      <StyledInput {...title} />
       <label>author: </label>
-      <input
-        id="author"
-        type="text"
-        name="Author"
-        value={author}
-        onChange={({ target }) => setAuthor(target.value)}
-      />
+      <StyledInput {...author} />
       <label>url: </label>
-      <input
-        id="url"
-        type="text"
-        name="url"
-        value={url}
-        onChange={({ target }) => setUrl(target.value)}
-      />
+      <StyledInput {...url} />
       <Button
         id="createBlog"
         type="submit"
-        style={{ marginTop: '1rem' }}
-        variant="dark"
+        style={{ margin: '1rem 0' }}
+        variant="light"
       >
         create
       </Button>

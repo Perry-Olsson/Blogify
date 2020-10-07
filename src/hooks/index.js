@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { saveLike } from '../reducers/userReducer';
 
@@ -11,4 +12,27 @@ export const useLikeBlog = (blog, user) => {
     dispatch(saveLike(user, blog));
   };
   return like;
+};
+
+export const useField = (type, id) => {
+  const [value, setValue] = useState('');
+
+  const onChange = event => {
+    setValue(event.target.value);
+  };
+
+  const reset = () => {
+    setValue('');
+  };
+
+  return [
+    {
+      id,
+      type,
+      value,
+      onChange,
+      name: id,
+    },
+    reset,
+  ];
 };
