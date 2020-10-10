@@ -13,7 +13,8 @@ export const lightMode = {
   button: {
     background: '#091a1f',
     hover: '#25363b'
-  }
+  },
+  hover: '#555555'
 };
 
 export const darkMode = {
@@ -31,5 +32,6 @@ export const darkMode = {
   button: {
     background: '#FFF',
     hover: '#cccccc'
-  }
+  },
+  hover: '#aaaaaa',
 };

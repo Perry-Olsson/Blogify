@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import LikeButton from './LikeButton';
-import { StyledButton, StyledButtonOutline, StyledButtonMinimal } from '../../../components/styledComponents'
+import { StyledButton, StyledButtonOutline } from '../../../components/styledComponents'
 import './blogProfile.css';
 
 const Profile = ({ blog, confirmDeletion }) => {

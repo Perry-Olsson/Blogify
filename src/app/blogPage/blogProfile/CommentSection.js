@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Togglable from '../../togglable/Togglable';
 import AddComment from './AddComment';
-import { Button } from 'react-bootstrap';
 import './blogProfile.css'
 import { StyledButtonMinimal } from '../../../components/styledComponents';
 

@@ -3,7 +3,9 @@ import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../reducers/userReducer';
 import { clearNotification } from '../../reducers/notificationReducer';
 import {StyledLink} from '../../components/styledComponents';
+import OptionsIcon from '../../components/OptionsIcon'
 import { Button, Navbar, Nav } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 
 const NavBar = ({ user }) => {
   const dispatch = useDispatch();
@@ -40,6 +42,7 @@ const NavBar = ({ user }) => {
           >
             logout
           </Button>
+          <OptionsIcon size='sm' style={{ marginLeft: '0.9em' }}/>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
