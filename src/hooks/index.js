@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { saveLike } from '../reducers/userReducer';
+import userService  from '../services/users'
+import { saveLike, setUser, logoutUser, createNotification } from '../reducers';
 
 export const useLikeBlog = (blog, user) => {
   const dispatch = useDispatch();
@@ -36,3 +37,45 @@ export const useField = (type, id) => {
     reset,
   ];
 };
+
+export const useGetLikesAndSetUser = () => {
+  const dispatch = useDispatch()
+
+  const handleError = (error) => {
+    if (error.response.data.error === 'User not found') dispatch(logoutUser())
+    else dispatch(
+      createNotification({ type: 'danger', message: error.response.data.error }, 5)
+    );
+  }
+
+  const main = async (user) => {
+    try {
+      const response = await userService.getLikes(user)
+      dispatch(setUser(response))
+    } catch(e) {
+      handleError(e)
+    }
+  }
+
+  return main
+}
+
+export const useDarkMode = (userTheme) => {
+  const [theme, setTheme] = useState(userTheme || 'light')
+
+  const setMode = (mode) => {
+    window.localStorage.setItem('theme', mode) 
+    setTheme(mode)
+  }
+
+  const themeToggler = () => {
+    theme === 'light' ? setMode('dark') : setMode('light')
+  }
+
+  useEffect(() => {
+    const localTheme = window.localStorage.getItem('theme')
+    localTheme && setTheme(localTheme)
+  }, [])
+
+  return [theme, themeToggler]
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../reducers/userReducer';
 import { clearNotification } from '../../reducers/notificationReducer';
-import StyledLink from '../../components/StyledLink';
+import {StyledLink} from '../../components/styledComponents';
 import { Button, Navbar, Nav } from 'react-bootstrap';
 
 const NavBar = ({ user }) => {

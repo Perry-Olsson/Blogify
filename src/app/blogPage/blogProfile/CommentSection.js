@@ -3,25 +3,27 @@ import { useSelector } from 'react-redux';
 import Togglable from '../../togglable/Togglable';
 import AddComment from './AddComment';
 import { Button } from 'react-bootstrap';
+import './blogProfile.css'
+import { StyledButtonMinimal } from '../../../components/styledComponents';
 
 const CommentSection = ({ blog, del, createComment }) => {
   const user = useSelector(state => state.user);
   return (
     <>
-      <div>
+      <div className="section">
         <h4>Comments:</h4>
         <ul>
           {blog.comments.map((comment, i) => (
             <li key={i}>
               {comment.comment}
               {user && user.username === comment.user && (
-                <Button
+                <StyledButtonMinimal
                   variant="outline-danger"
                   onClick={() => del(comment.id)}
-                  style={{ width: 'fit-content', marginLeft: '1em' }}
+                  style={{ width: 'fit-content', marginLeft: '2em' }}
                 >
                   delete
-                </Button>
+                </StyledButtonMinimal>
               )}
             </li>
           ))}

@@ -4,8 +4,7 @@ import { addBlog } from '../../../../reducers/blogReducer';
 import { createNotification } from '../../../../reducers/notificationReducer';
 import blogService from '../../../../services/blogs';
 import { useField } from '../../../../hooks';
-import { Button } from 'react-bootstrap';
-import StyledInput from '../../../../components/StyledInput';
+import { StyledInput, StyledButton } from '../../../../components/styledComponents';
 import './AddBlog.css';
 
 const AddBlog = ({ toggleVisibility }) => {
@@ -65,14 +64,13 @@ const AddBlog = ({ toggleVisibility }) => {
       <StyledInput {...author} />
       <label>url: </label>
       <StyledInput {...url} />
-      <Button
+      <StyledButton
         id="createBlog"
         type="submit"
         style={{ margin: '1rem 0' }}
-        variant="light"
       >
         create
-      </Button>
+      </StyledButton>
     </form>
   );
 };

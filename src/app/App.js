@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { initializeBlogs, setUser, createNotification } from '../reducers';
 import { Switch, Route } from 'react-router-dom';
-import userService from '../services/users';
+import { initializeBlogs, setUser } from '../reducers';
+import { useGetLikesAndSetUser, useDarkMode } from '../hooks'
+import { getLocalTheme } from '../utils/misc'
+
 import Navigation from './navigation/Navigation';
 import BlogPage from './blogPage/BlogPage';
 import UserPage from './users/UserPage';
@@ -15,35 +17,24 @@ import './App.css';
 const App = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
-  const [theme, setTheme] = useState('light');
-
-  const themeToggler = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light');
-  };
+  const getLikes = useGetLikesAndSetUser();
+  const [theme, toggler] = useDarkMode(getLocalTheme())
 
   useEffect(() => {
     dispatch(initializeBlogs());
     const loggedUser = window.localStorage.getItem('loggedUser');
-    if (loggedUser) {
+    if (loggedUser && !user) {
       let user = JSON.parse(loggedUser);
-      userService
-        .getLikes(user)
-        .then(u => {
-          dispatch(setUser(u));
-        })
-        .catch(e => {
-          dispatch(
-            createNotification({ type: 'danger', message: e.message }, 5)
-          );
-        });
+      dispatch(setUser(user))
+      getLikes(user)
     }
-  }, [dispatch]);
-
+  }, [dispatch, getLikes, user]);
+  
   return (
     <ThemeProvider theme={theme === 'light' ? lightMode : darkMode}>
       <GlobalStyles />
       <div className="container">
-        <button onClick={themeToggler}>toggle</button>
+        <button onClick={toggler}>toggle</button>
         <h1 className="logo">Blogbook</h1>
         <Navigation user={user} />
         <Switch>

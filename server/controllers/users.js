@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 
 usersRouter.get('/likes/:id', async (request, response) => {
   const user = await User.findById(request.params.id)
+  if (!user) response.status(400).json({error: 'User not found'})
   response.json({ likes: user.likes })
 })
 
@@ -13,6 +14,7 @@ usersRouter.get('/', async (request, response) => {
     title: 1,
     url: 1,
     likes: 1,
+    theme: 1
   })
   response.json(users)
 })

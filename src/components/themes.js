@@ -10,11 +10,15 @@ export const lightMode = {
   input: {
     background: '#FFF',
   },
+  button: {
+    background: '#091a1f',
+    hover: '#25363b'
+  }
 };
 
 export const darkMode = {
   body: '#363537',
-  text: '#ffffff',
+  text: '#FFF',
   toggleBorder: '#ffffff',
   background: '#555555',
   navBar: {
@@ -24,4 +28,8 @@ export const darkMode = {
   input: {
     background: '#555555',
   },
+  button: {
+    background: '#FFF',
+    hover: '#cccccc'
+  }
 };

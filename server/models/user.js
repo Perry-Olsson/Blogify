@@ -28,6 +28,10 @@ const userSchema = mongoose.Schema({
     type: Map,
     of: String,
   },
+  theme: {
+    type: String,
+    default: 'light'
+  }
 })
 
 userSchema.plugin(uniqueValidator)

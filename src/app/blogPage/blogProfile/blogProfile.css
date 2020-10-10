@@ -11,3 +11,7 @@
   display: flex;
   align-items: center;
 }
+
+.section {
+  margin: 1em 0;
+}

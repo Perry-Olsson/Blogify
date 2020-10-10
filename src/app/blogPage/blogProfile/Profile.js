@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import LikeButton from './LikeButton';
-import { Button } from 'react-bootstrap';
+import { StyledButton, StyledButtonOutline, StyledButtonMinimal } from '../../../components/styledComponents'
 import './blogProfile.css';
 
 const Profile = ({ blog, confirmDeletion }) => {
@@ -12,7 +12,7 @@ const Profile = ({ blog, confirmDeletion }) => {
       <iframe title={blog.title} src={blog.url} className="embeddedBlog" />
       <div className="likeButtonDiv">
         <a href={blog.url} rel="noopener noreferrer" target="_blank">
-          <Button variant="outline-dark">visit page</Button>
+          <StyledButton variant="outline-dark">visit page</StyledButton>
         </a>
         <div>
           {user ? (
@@ -27,9 +27,9 @@ const Profile = ({ blog, confirmDeletion }) => {
         added by <b>{blog.user.username}</b>
       </p>
       {user && user.username === blog.user.username && (
-        <Button className="delete" onClick={confirmDeletion}>
+        <StyledButtonOutline onClick={confirmDeletion}>
           Delete
-        </Button>
+        </StyledButtonOutline>
       )}
     </>
   );

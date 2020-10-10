@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import StyledButton from '../../components/StyledButton';
+import { StyledButtonOutline } from '../../components/styledComponents';
 
 const Togglable = props => {
   const [visible, setVisible] = useState(props.visible);
@@ -13,22 +13,22 @@ const Togglable = props => {
     <>
       <div style={showWhenVisible}>
         {React.cloneElement(props.children, { toggleVisibility })}
-        <StyledButton
+        <StyledButtonOutline
           onClick={toggleVisibility}
           variant="outline-secondary"
           size={props.size || 'md'}
         >
           cancel
-        </StyledButton>
+        </StyledButtonOutline>
       </div>
       <div style={hideWhenVisible} className="togglableContent">
-        <StyledButton
+        <StyledButtonOutline
           onClick={toggleVisibility}
           variant="outline-dark"
           size={props.size || 'md'}
         >
           {props.buttonLabel}
-        </StyledButton>
+        </StyledButtonOutline>
       </div>
     </>
   );
