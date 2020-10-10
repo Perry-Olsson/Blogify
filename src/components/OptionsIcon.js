@@ -22,10 +22,10 @@ ${Container}:hover & {
   background: ${({ variant }) => variant === 'light' ? '#aaaaaa' : '#555555'}
 }`
 
-const OptionsIcon = ({style, size, variant}) => {
+const OptionsIcon = (props) => {
   let iconSize = null;
   let dotSize = null;
-  switch (size) {
+  switch (props.size) {
     case 'sm': iconSize = '2em'; dotSize = '6px'; break;
     case 'md': iconSize = '2.5em'; dotSize ='8px'; break;
     case 'lg': iconSize = '3em'; dotSize = '10px'; break;
@@ -35,10 +35,10 @@ const OptionsIcon = ({style, size, variant}) => {
 
 
   return (
-  <Container style={{...style}} iconSize={iconSize}>
-    <Dot variant={variant} dotSize={dotSize} />
-    <Dot variant={variant} dotSize={dotSize} />
-    <Dot variant={variant} dotSize={dotSize} />
+  <Container {...props} iconSize={iconSize}>
+    <Dot {...props} dotSize={dotSize} />
+    <Dot {...props} dotSize={dotSize} />
+    <Dot {...props} dotSize={dotSize} />
   </Container>
 )
   }

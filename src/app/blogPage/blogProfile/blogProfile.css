@@ -15,3 +15,11 @@
 .section {
   margin: 1em 0;
 }
+
+.optionsButton {
+  display: none !important;
+}
+
+.optionsButtonContainer:hover .optionsButton {
+  display: flex !important;
+}

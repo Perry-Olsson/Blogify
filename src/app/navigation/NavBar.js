@@ -41,7 +41,7 @@ const NavBar = ({ user }) => {
           >
             logout
           </Button>
-          <OptionsIcon size='sm' variant="light" style={{ marginLeft: '0.9em' }}/>
+          <OptionsIcon size='sm' variant="light" style={{ marginLeft: '0.6em' }}/>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

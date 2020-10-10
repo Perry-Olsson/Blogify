@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Togglable from '../../togglable/Togglable';
 import AddComment from './AddComment';
 import './blogProfile.css'
-import { StyledButtonMinimal } from '../../../components/styledComponents';
+import OptionsIcon from '../../../components/OptionsIcon'
 
 const CommentSection = ({ blog, del, createComment }) => {
   const user = useSelector(state => state.user);
@@ -13,18 +13,13 @@ const CommentSection = ({ blog, del, createComment }) => {
         <h4>Comments:</h4>
         <ul>
           {blog.comments.map((comment, i) => (
-            <li key={i}>
+            <div className='optionsButtonContainer' style={{ display: 'flex', alignItems: 'center', width: '8em', height: '2em'}} key={i}><li>
               {comment.comment}
-              {user && user.username === comment.user && (
-                <StyledButtonMinimal
-                  variant="outline-danger"
-                  onClick={() => del(comment.id)}
-                  style={{ width: 'fit-content', marginLeft: '2em' }}
-                >
-                  delete
-                </StyledButtonMinimal>
-              )}
             </li>
+            {user && user.username === comment.user && (
+                <OptionsIcon size='sm' variant='light' style={{ marginLeft:'2em'}} className='optionsButton' />
+              )}
+            </div>
           ))}
         </ul>
       </div>
