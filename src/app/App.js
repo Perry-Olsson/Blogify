@@ -13,7 +13,6 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '../components/gobalStyles';
 import { lightMode, darkMode } from '../components/themes';
 import './App.css';
-import OptionsIcon from '../components/OptionsIcon'
 
 const App = () => {
   const dispatch = useDispatch();

@@ -17,12 +17,12 @@ width: ${props => props.dotSize};
 height: ${props => props.dotSize};
 border-radius: 50%;
 margin: 1px 0;
-background: ${({ theme }) => theme.text};
+background: ${({ variant }) => variant === 'light' ? '#FFF' : '#363537'};
 ${Container}:hover & {
-  background: ${({ theme }) => theme.hover}
+  background: ${({ variant }) => variant === 'light' ? '#aaaaaa' : '#555555'}
 }`
 
-const OptionsIcon = ({style, size}) => {
+const OptionsIcon = ({style, size, variant}) => {
   let iconSize = null;
   let dotSize = null;
   switch (size) {
@@ -36,9 +36,9 @@ const OptionsIcon = ({style, size}) => {
 
   return (
   <Container style={{...style}} iconSize={iconSize}>
-    <Dot dotSize={dotSize} />
-    <Dot dotSize={dotSize} />
-    <Dot dotSize={dotSize} />
+    <Dot variant={variant} dotSize={dotSize} />
+    <Dot variant={variant} dotSize={dotSize} />
+    <Dot variant={variant} dotSize={dotSize} />
   </Container>
 )
   }
