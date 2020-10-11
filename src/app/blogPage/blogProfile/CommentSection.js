@@ -17,7 +17,7 @@ const CommentSection = ({ blog, del, createComment }) => {
               {comment.comment}
             </li>
             {user && user.username === comment.user && (
-                <OptionsIcon size='sm' variant='light' style={{ marginLeft:'2em'}} className='optionsButton' />
+                <OptionsIcon size='sm' variant='theme' style={{ marginLeft:'2em'}} className='optionsButton' />
               )}
             </div>
           ))}

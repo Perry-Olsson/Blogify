@@ -17,10 +17,11 @@ width: ${props => props.dotSize};
 height: ${props => props.dotSize};
 border-radius: 50%;
 margin: 1px 0;
-background: ${({ variant }) => variant === 'light' ? '#FFF' : '#363537'};
+background: ${({ variant, theme }) => setBackground(variant, theme)};
 ${Container}:hover & {
-  background: ${({ variant }) => variant === 'light' ? '#aaaaaa' : '#555555'}
+  background: ${({ variant, theme }) => setHover(variant, theme)};
 }`
+
 
 const OptionsIcon = (props) => {
   let iconSize = null;
@@ -41,6 +42,24 @@ const OptionsIcon = (props) => {
     <Dot {...props} dotSize={dotSize} />
   </Container>
 )
+  }
+
+  const setBackground = (variant, theme) => {
+    switch(variant){
+      case 'light': return '#FFF'; 
+      case 'dark': return '#363537';
+      case 'theme': return theme.text; 
+      default: return '#FFF';
+    }
+  };
+  
+  const setHover = (variant, theme) => {
+    switch (variant) {
+      case 'light': return '#aaaaaa';
+      case 'dark': return '#555555';
+      case 'theme': return theme.hover;
+      default: return '#AAA'
+    }
   }
 
 export default OptionsIcon

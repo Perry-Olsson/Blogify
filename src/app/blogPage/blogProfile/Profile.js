@@ -25,7 +25,7 @@ const Profile = ({ blog, confirmDeletion }) => {
             {blog.likes} likes
           </div>
         </div>
-      <OptionsIcon variant='light' size='sm' className='optionsButton' />
+      <OptionsIcon variant='theme' size='sm' className='optionsButton' />
       </div>
       <p>
         added by <b>{blog.user.username}</b>
