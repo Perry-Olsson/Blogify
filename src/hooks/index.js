@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import userService  from '../services/users'
-import { saveLike, setUser, logoutUser, createNotification } from '../reducers';
+import { saveLike, setLikes, logoutUser, createNotification } from '../reducers';
 
 export const useLikeBlog = (blog, user) => {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ export const useField = (type, id) => {
   ];
 };
 
-export const useGetLikesAndSetUser = () => {
+export const useGetAndSetLikes = () => {
   const dispatch = useDispatch()
 
   const handleError = (error) => {
@@ -51,7 +51,7 @@ export const useGetLikesAndSetUser = () => {
   const main = async (user) => {
     try {
       const response = await userService.getLikes(user)
-      dispatch(setUser(response))
+      dispatch(setLikes(response.likes))
     } catch(e) {
       handleError(e)
     }

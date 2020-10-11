@@ -10,6 +10,8 @@ const userReducer = (state = null, action) => {
     return action.user;
   case 'SET':
     return action.user;
+  case 'SET_LIKES':
+    return {...state, likes: action.likes}
   case 'LIKE':
     return action.user;
   case 'LOGOUT':
@@ -32,6 +34,15 @@ export const setUser = user => {
     }
   };
 };
+
+export const setLikes = likes => {
+  return dispatch => {
+    dispatch({
+      type: 'SET_LIKES',
+      likes
+    })
+  } 
+}
 
 export const loginUser = (username, password) => {
   return async dispatch => {

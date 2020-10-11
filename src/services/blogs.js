@@ -6,7 +6,7 @@ let token = null;
 
 const setToken = newToken => {
   if (!newToken) {
-    token = loginHelper.getLoggedUser();
+    token = loginHelper.getUserToken();
     if (!token) throw new Error('Must log in');
   } else token = `bearer ${newToken}`;
 };
