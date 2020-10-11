@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import LikeButton from './LikeButton';
-import { StyledButton, StyledButtonOutline } from '../../../components/styledComponents'
+import { StyledButton, StyledButtonOutline } from '../../../components/styledComponents';
 import './blogProfile.css';
 import OptionsIcon from '../../../components/OptionsIcon';
 
@@ -11,7 +11,7 @@ const Profile = ({ blog, confirmDeletion }) => {
     <>
       <h2>{blog.title}</h2>
       <iframe title={blog.title} src={blog.url} className="embeddedBlog" />
-      <div className='optionsButtonContainer' style={{ display: 'flex', justifyContent: 'space-between'}}>
+      <div className='optionsButtonContainer' style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div className="likeButtonDiv">
           <a href={blog.url} rel="noopener noreferrer" target="_blank">
             <StyledButton variant="outline-dark">visit page</StyledButton>
@@ -25,7 +25,7 @@ const Profile = ({ blog, confirmDeletion }) => {
             {blog.likes} likes
           </div>
         </div>
-      <OptionsIcon variant='theme' size='sm' className='optionsButton' />
+        <OptionsIcon id="profile" size='sm' className='optionsButton' />
       </div>
       <p>
         added by <b>{blog.user.username}</b>

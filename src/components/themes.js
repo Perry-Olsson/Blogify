@@ -33,5 +33,5 @@ export const darkMode = {
     background: '#FFF',
     hover: '#cccccc'
   },
-  hover: '#bbb',
+  hover: '#bbbbbb',
 };

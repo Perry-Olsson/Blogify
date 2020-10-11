@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 // misc
 import { initializeBlogs, setUser } from '../reducers';
-import { useDarkMode, useGetAndSetLikes } from '../hooks'
-import { getLocalTheme } from '../utils/misc'
+import { useDarkMode, useGetAndSetLikes } from '../hooks';
+import { getLocalTheme } from '../utils/misc';
 // Components
 import Navigation from './navigation/Navigation';
 import BlogPage from './blogPage/BlogPage';
@@ -20,15 +20,15 @@ const App = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   const getAndSetLikes = useGetAndSetLikes();
-  const [theme, toggler] = useDarkMode(getLocalTheme())
+  const [theme, toggler] = useDarkMode(getLocalTheme());
 
   useEffect(() => {
     dispatch(initializeBlogs());
     const loggedUser = window.localStorage.getItem('loggedUser');
     if (loggedUser && !user) {
       let user = JSON.parse(loggedUser);
-      dispatch(setUser(user))
-      getAndSetLikes(user)
+      dispatch(setUser(user));
+      getAndSetLikes(user);
     }
   }, [dispatch, getAndSetLikes, user]);
   return (

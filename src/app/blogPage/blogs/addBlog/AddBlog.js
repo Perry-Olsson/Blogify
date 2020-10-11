@@ -28,11 +28,11 @@ const AddBlog = ({ toggleVisibility }) => {
     } catch (exception) {
       exception.response
         ? dispatch(
-            createNotification(
-              { type: 'danger', message: exception.response.data.error },
-              5
-            )
+          createNotification(
+            { type: 'danger', message: exception.response.data.error },
+            5
           )
+        )
         : console.log(exception);
       return null;
     }

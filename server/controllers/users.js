@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 
 usersRouter.get('/likes/:id', async (request, response) => {
   const user = await User.findById(request.params.id)
-  if (!user) response.status(400).json({error: 'User not found'})
+  if (!user) response.status(400).json({ error: 'User not found' })
   response.json({ likes: user.likes })
 })
 

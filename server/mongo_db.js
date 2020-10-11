@@ -16,7 +16,7 @@ mongoose
   .connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('connected'))
   .catch(() => console.log('not connected'))
-  
+
 const main = async () => {
   if (process.argv[2] === 'reset') {
     await Blog.deleteMany({})

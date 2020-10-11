@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 export const StyledButton = styled(Button)`
 color: ${({ theme }) => theme.body};
@@ -10,7 +10,7 @@ border-color: ${({ theme }) => theme.button.background};
   background: ${({ theme }) => theme.button.hover};
   border-color: ${({ theme }) => theme.button.hover};
   color: ${({ theme }) => theme.body};
-}`
+}`;
 
 export const StyledButtonOutline = styled(Button)`
   color: ${({ theme }) => theme.text};
@@ -30,7 +30,7 @@ export const StyledButtonMinimal = styled(Button)`
   &:hover {
     border-color: ${({ theme }) => theme.background};
     background: ${({ theme }) => theme.body};
-  }`
+  }`;
 
 export const StyledInput = styled.input`
   color: ${({ theme }) => theme.text};

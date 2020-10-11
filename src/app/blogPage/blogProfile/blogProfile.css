@@ -17,9 +17,9 @@
 }
 
 .optionsButton {
-  display: none;
+  display: none !important;
 }
 
 .optionsButtonContainer:hover .optionsButton {
-  display: flex;
+  display: flex !important;
 }

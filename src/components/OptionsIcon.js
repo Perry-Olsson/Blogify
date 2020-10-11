@@ -1,5 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import { getLocalTheme } from '../utils/misc'
+import styled from 'styled-components';
+import './optionsIcon.css'
 
 const Container = styled.div`
 width ${props => props.iconSize};
@@ -10,56 +12,45 @@ justify-content: center;
 align-items: center;
 align-self: center;
 cursor: pointer;
-`
+`;
+
 
 const Dot = styled.div`
 width: ${props => props.dotSize};
 height: ${props => props.dotSize};
 border-radius: 50%;
 margin: 1px 0;
-background: ${({ variant, theme }) => setBackground(variant, theme)};
-${Container}:hover & {
-  background: ${({ variant, theme }) => setHover(variant, theme)};
-}`
+background: ${({ className, theme }) => setBackground(className, theme)};
+}`;
 
 
 const OptionsIcon = (props) => {
   let iconSize = null;
   let dotSize = null;
   switch (props.size) {
-    case 'sm': iconSize = '2em'; dotSize = '6px'; break;
-    case 'md': iconSize = '2.5em'; dotSize ='8px'; break;
-    case 'lg': iconSize = '3em'; dotSize = '10px'; break;
-    default: iconSize = '2em';
+  case 'sm': iconSize = '2em'; dotSize = '6px'; break;
+  case 'md': iconSize = '2.5em'; dotSize ='8px'; break;
+  case 'lg': iconSize = '3em'; dotSize = '10px'; break;
+  default: iconSize = '2em';
   }
 
 
+  let theme = getLocalTheme()
+  if (props.variant) theme = props.variant
 
   return (
-  <Container {...props} iconSize={iconSize}>
-    <Dot {...props} dotSize={dotSize} />
-    <Dot {...props} dotSize={dotSize} />
-    <Dot {...props} dotSize={dotSize} />
-  </Container>
-)
-  }
+    <Container {...props} className={`${props.className || ''} ${theme}Container`}iconSize={iconSize}>
+      <Dot className={theme} dotSize={dotSize} />
+      <Dot className={theme} dotSize={dotSize} />
+      <Dot className={theme} dotSize={dotSize} />
+    </Container>
+  );
+};
 
-  const setBackground = (variant, theme) => {
-    switch(variant){
-      case 'light': return '#FFF'; 
-      case 'dark': return '#363537';
-      case 'theme': return theme.text; 
-      default: return '#FFF';
-    }
-  };
-  
-  const setHover = (variant, theme) => {
-    switch (variant) {
-      case 'light': return '#aaaaaa';
-      case 'dark': return '#555555';
-      case 'theme': return theme.hover;
-      default: return '#AAA'
-    }
-  }
+const setBackground = (variant, theme) => {
+  if (variant === 'dark') return '#FFF'
+  else if (variant === 'light') return '#363537'
+  else return theme.text  
+}
 
-export default OptionsIcon
+export default OptionsIcon;

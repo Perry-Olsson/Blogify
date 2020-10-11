@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../reducers/userReducer';
 import { clearNotification } from '../../reducers/notificationReducer';
-import {StyledLink} from '../../components/styledComponents';
-import OptionsIcon from '../../components/OptionsIcon'
+import { StyledLink } from '../../components/styledComponents';
+import OptionsIcon from '../../components/OptionsIcon';
 import { Button, Navbar, Nav } from 'react-bootstrap';
 
 const NavBar = ({ user }) => {
@@ -41,7 +41,7 @@ const NavBar = ({ user }) => {
           >
             logout
           </Button>
-          <OptionsIcon size='sm' variant="light" style={{ marginLeft: '0.6em' }}/>
+          <OptionsIcon id='nav' size='sm' variant="dark" style={{ marginLeft: '0.6em' }}/>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
