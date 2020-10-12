@@ -1,5 +1,5 @@
 import React from 'react';
-import { getLocalTheme } from '../utils/misc'
+import { getLocalTheme } from '../../utils/misc'
 import styled from 'styled-components';
 import './optionsIcon.css'
 

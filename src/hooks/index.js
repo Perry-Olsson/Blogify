@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import userService  from '../services/users';
-import { saveLike, setLikes, logoutUser, createNotification } from '../reducers';
+import { saveLike, setLikes, logoutUser, createNotification} from '../reducers';
 
 export const useLikeBlog = (blog, user) => {
   const dispatch = useDispatch();
@@ -63,13 +63,14 @@ export const useGetAndSetLikes = () => {
 export const useDarkMode = (userTheme) => {
   const [theme, setTheme] = useState(userTheme || 'light');
 
-  const setMode = (mode) => {
-    window.localStorage.setItem('theme', mode);
-    setTheme(mode);
+  const setMode = async (mode, id) => {
+    const userFromDb =  await userService.setTheme({ theme: mode }, id)
+    window.localStorage.setItem('theme', userFromDb.theme);
+    setTheme(userFromDb.theme);
   };
 
-  const themeToggler = () => {
-    theme === 'light' ? setMode('dark') : setMode('light');
+  const themeToggler = (userId) => {
+    theme === 'light' ? setMode('dark', userId) : setMode('light', userId);
   };
 
   return [theme, themeToggler];

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../reducers/userReducer';
 import { clearNotification } from '../../reducers/notificationReducer';
 import { StyledLink } from '../../components/styledComponents';
-import OptionsIcon from '../../components/OptionsIcon';
+import OptionsIcon from '../../components/optionsIcon/OptionsIcon';
 import { Button, Navbar, Nav } from 'react-bootstrap';
 
 const NavBar = ({ user }) => {

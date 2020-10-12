@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Togglable from '../../togglable/Togglable';
 import AddComment from './AddComment';
 import './blogProfile.css';
-import OptionsIcon from '../../../components/OptionsIcon';
+import OptionsIcon from '../../../components/optionsIcon/OptionsIcon';
 
 const CommentSection = ({ blog, del, createComment }) => {
   const user = useSelector(state => state.user);

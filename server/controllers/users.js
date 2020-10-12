@@ -1,11 +1,18 @@
 const usersRouter = require('express').Router()
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 usersRouter.get('/likes/:id', async (request, response) => {
   const user = await User.findById(request.params.id)
   if (!user) response.status(400).json({ error: 'User not found' })
   response.json({ likes: user.likes })
+})
+
+usersRouter.get('/theme/:id', async (request, response) => {
+  const user = await User.findById(request.params.id)
+  if (!user) response.status(400).json({ error: 'User not found' })
+  response.json({ theme: user.theme })
 })
 
 usersRouter.get('/', async (request, response) => {
@@ -21,13 +28,26 @@ usersRouter.get('/', async (request, response) => {
 
 usersRouter.post('/like/:userId/:blogId', async (request, response) => {
   const blogId = request.params.blogId
+  const decodedToken = jwt.verify(request.token, process.env.SECRET)
+  if (!request.token || !decodedToken.id) {
+    return response.status(401).json({ error: 'token missing or invalid' })
+  }
   const user = await User.findById(request.params.userId)
   if (user.likes.get(blogId))
     response
       .status(400)
       .json({ error: 'blog as been liked by this user already' })
-  console.log(user.likes)
   user.likes.set(blogId, 'true')
+  const userForResponse = await user.save()
+  response.json(userForResponse)
+})
+
+usersRouter.post('/theme/:userId', async (request, response) => {
+  const userId = request.params.userId
+  let theme = request.body.theme
+  if (theme !== 'light' && theme !== 'dark') theme = 'light'
+  const user = await User.findById(userId)
+  user.theme = theme
   const userForResponse = await user.save()
   response.json(userForResponse)
 })

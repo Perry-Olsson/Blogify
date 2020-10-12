@@ -54,6 +54,7 @@ export const loginUser = (username, password) => {
         user,
       });
       delete user.likes;
+      delete user.theme
       window.localStorage.setItem('loggedUser', JSON.stringify(user));
       dispatch(
         createNotification({ type: 'success', message: 'login successful' }, 5)

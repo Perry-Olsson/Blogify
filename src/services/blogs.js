@@ -2,7 +2,7 @@ import axios from 'axios';
 import loginHelper from '../utils/loginHelper';
 const baseUrl = '/api/blogs';
 
-let token = null;
+export let token = null;
 
 const setToken = newToken => {
   if (!newToken) {

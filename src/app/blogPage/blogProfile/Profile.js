@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import LikeButton from './LikeButton';
 import { StyledButton, StyledButtonOutline } from '../../../components/styledComponents';
 import './blogProfile.css';
-import OptionsIcon from '../../../components/OptionsIcon';
+import OptionsIcon from '../../../components/optionsIcon/OptionsIcon';
 
 const Profile = ({ blog, confirmDeletion }) => {
   const user = useSelector(state => state.user);
