@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { StyledButton } from '../../../components/styledComponents'
 
 const AddComment = ({ createComment, toggleVisibility }) => {
   const [comment, setComment] = useState('');
@@ -18,14 +18,13 @@ const AddComment = ({ createComment, toggleVisibility }) => {
           value={comment}
           onChange={({ target }) => setComment(target.value)}
         />
-        <Button
-          variant="dark"
-          size="sm"
+        <StyledButton
+          size='sm'
           style={{ margin: '.5em 0' }}
           type="submit"
         >
           add comment
-        </Button>
+        </StyledButton>
       </div>
     </form>
   );
