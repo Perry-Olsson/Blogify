@@ -5,7 +5,6 @@ import { Button } from 'react-bootstrap';
 const LikeButton = ({ blog, user }) => {
   const like = useLikeBlog(blog, user.id);
   if (!user.likes) {
-    console.log(`Blog: ${blog}\n user: ${user}`);
     return null;
   }
   return user.likes[blog.id] ? (

@@ -26,9 +26,9 @@ const App = () => {
     dispatch(initializeBlogs());
     const loggedUser = window.localStorage.getItem('loggedUser');
     if (loggedUser && !user) {
-      let user = JSON.parse(loggedUser);
-      dispatch(setUser(user));
-      getAndSetLikes(user);
+      let localUser = JSON.parse(loggedUser);
+      dispatch(setUser(localUser));
+      getAndSetLikes(localUser);
     }
 
   }, [dispatch, getAndSetLikes, user]);
