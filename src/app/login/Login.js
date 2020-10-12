@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useField } from '../../hooks/index';
 import { loginUser } from '../../reducers/userReducer';
 import { useDispatch } from 'react-redux';
 
-import { StyledInput } from '../../components/styledComponents'
+import { StyledInput } from '../../components/styledComponents';
 import { Button } from 'react-bootstrap';
 import './Login.css';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, resetUsername] = useField('text', 'username');
+  const [password, resetPassword] = useField('text', 'password');
 
   const handleLogin = async event => {
     event.preventDefault();
-    dispatch(loginUser(username, password));
-    setUsername('');
-    setPassword('');
+    dispatch(loginUser(username.value, password));
+    resetUsername();
+    resetPassword();
   };
 
   return (
@@ -24,23 +25,11 @@ const Login = () => {
       <form onSubmit={handleLogin}>
         <div>
           <label>username</label>
-          <StyledInput
-            id="loginUsername"
-            type="text"
-            value={username}
-            name="Username"
-            onChange={({ target }) => setUsername(target.value)}
-          />
+          <StyledInput { ...username } />
         </div>
         <div>
           <label>password</label>
-          <StyledInput
-            id="loginPassword"
-            type="password"
-            value={password}
-            name="Password"
-            onChange={({ target }) => setPassword(target.value)}
-          />
+          <StyledInput { ...password } />
         </div>
         <Button id="loginButton" className="login" type="submit" variant="dark">
           login

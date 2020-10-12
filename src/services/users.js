@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { token } from './blogs'
+import { token } from './blogs';
 const baseUrl = '/api/users';
 
 const getAll = async () => {
@@ -25,13 +25,13 @@ const setTheme = async (theme, userId) => {
   const config = {
     headers: { Authorization: token },
   };
-  const response = await axios.post(`${baseUrl}/theme/${userId}`, theme, config)
-  return response.data
-}
+  const response = await axios.post(`${baseUrl}/theme/${userId}`, theme, config);
+  return response.data;
+};
 
 const getTheme = async (id) => {
-  const response = await axios.get(`${baseUrl}/theme/${id}`)
-  return response.data
-}
+  const response = await axios.get(`${baseUrl}/theme/${id}`);
+  return response.data;
+};
 
 export default { getAll, like, getLikes, setTheme, getTheme };

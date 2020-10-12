@@ -1,7 +1,7 @@
 import React from 'react';
-import { getLocalTheme } from '../../utils/misc'
+import { getLocalTheme } from '../../utils/misc';
 import styled from 'styled-components';
-import './optionsIcon.css'
+import './optionsIcon.css';
 
 const Container = styled.div`
 width ${props => props.iconSize};
@@ -35,8 +35,8 @@ const OptionsIcon = (props) => {
   }
 
 
-  let theme = getLocalTheme()
-  if (props.variant) theme = props.variant
+  let theme = getLocalTheme();
+  if (props.variant) theme = props.variant;
 
   return (
     <Container {...props} className={`${props.className || ''} ${theme}Container`}iconSize={iconSize}>
@@ -48,9 +48,9 @@ const OptionsIcon = (props) => {
 };
 
 const setBackground = (variant, theme) => {
-  if (variant === 'dark') return '#FFF'
-  else if (variant === 'light') return '#363537'
-  else return theme.text  
-}
+  if (variant === 'dark') return '#FFF';
+  else if (variant === 'light') return '#363537';
+  else return theme.text;
+};
 
 export default OptionsIcon;

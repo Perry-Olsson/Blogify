@@ -7,7 +7,7 @@ import OptionsIcon from '../../../components/optionsIcon/OptionsIcon';
 
 const Profile = ({ blog, confirmDeletion }) => {
   const user = useSelector(state => state.user);
-  console.log(user)
+  console.log(user);
   return (
     <>
       <h2>{blog.title}</h2>
