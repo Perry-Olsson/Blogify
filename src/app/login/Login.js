@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { loginUser } from '../../reducers/userReducer';
 import { useDispatch } from 'react-redux';
+
+import { StyledInput } from '../../components/styledComponents'
 import { Button } from 'react-bootstrap';
 import './Login.css';
 
@@ -22,7 +24,7 @@ const Login = () => {
       <form onSubmit={handleLogin}>
         <div>
           <label>username</label>
-          <input
+          <StyledInput
             id="loginUsername"
             type="text"
             value={username}
@@ -32,7 +34,7 @@ const Login = () => {
         </div>
         <div>
           <label>password</label>
-          <input
+          <StyledInput
             id="loginPassword"
             type="password"
             value={password}

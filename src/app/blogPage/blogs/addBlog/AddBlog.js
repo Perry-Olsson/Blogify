@@ -23,7 +23,7 @@ const AddBlog = ({ toggleVisibility }) => {
 
   const queryDb = async () => {
     try {
-      const newBlog = { title, author, url };
+      const newBlog = { title: title.value, author: author.value, url: url.value };
       return await blogService.addBlog(newBlog);
     } catch (exception) {
       exception.response
