@@ -1,13 +1,19 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import LikeButton from './LikeButton';
-import { StyledButton, StyledButtonOutline } from '../../../components/styledComponents';
+import CustomToggle from '../../../components/CustomToggle'
+import { Dropdown } from 'react-bootstrap'
+import { StyledButton } from '../../../components/styledComponents';
 import './blogProfile.css';
-import OptionsIcon from '../../../components/optionsIcon/OptionsIcon';
+
+// const MenuWrapper = ({children}) => {
+//   const [show, setShow] = useState(false)
+//   const display = { display: show ? 'flex' : 'none' }  
+//   return <div>{children}</div>
+// }
 
 const Profile = ({ blog, confirmDeletion }) => {
   const user = useSelector(state => state.user);
-  console.log(user);
   return (
     <>
       <h2>{blog.title}</h2>
@@ -26,16 +32,24 @@ const Profile = ({ blog, confirmDeletion }) => {
             {blog.likes} likes
           </div>
         </div>
-        <OptionsIcon id="profile" size='sm' className='optionsButton' />
+        {user && user.username === blog.user.username && 
+        <Dropdown style={{ alignSelf: 'center'}}>
+          <Dropdown.Toggle as={CustomToggle} 
+            id='nav' 
+            size='sm' 
+            style={{ marginLeft: '0.8em' }}
+            className='optionsButton danger'
+          >
+          </Dropdown.Toggle>   
+          <Dropdown.Menu className='optionsButton'>
+            <Dropdown.Item as='button' onClick={() => console.log('hello') } style={{ color: 'red' }}>Delete Blog</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        }
       </div>
       <p>
         added by <b>{blog.user.username}</b>
       </p>
-      {user && user.username === blog.user.username && (
-        <StyledButtonOutline onClick={confirmDeletion}>
-          Delete
-        </StyledButtonOutline>
-      )}
     </>
   );
 };

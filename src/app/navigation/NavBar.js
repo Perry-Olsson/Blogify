@@ -3,16 +3,18 @@ import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../reducers/userReducer';
 import { clearNotification } from '../../reducers/notificationReducer';
 import { StyledLink } from '../../components/styledComponents';
-import OptionsIcon from '../../components/optionsIcon/OptionsIcon';
-import { Button, Navbar, Nav } from 'react-bootstrap';
+import  CustomToggle  from '../../components/CustomToggle'
+import { Button, Navbar, Nav, Dropdown } from 'react-bootstrap';
+import './nav.css'
 
-const NavBar = ({ user }) => {
+const NavBar = ({ user, toggler }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     dispatch(clearNotification());
     dispatch(logoutUser());
   };
+
   return (
     <Navbar
       collapseOnSelect
@@ -41,7 +43,20 @@ const NavBar = ({ user }) => {
           >
             logout
           </Button>
-          <OptionsIcon id='nav' size='sm' variant="dark" style={{ marginLeft: '0.6em' }}/>
+          <Dropdown style={{ alignSelf: 'center'}}>
+            <Dropdown.Toggle as={CustomToggle} 
+              id='nav' 
+              size='sm' 
+              variant="dark" 
+              style={{ marginLeft: '0.8em' }}
+              >
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item as='button' onClick={() => toggler(user.id)}>Change theme</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+
         </Nav>
       </Navbar.Collapse>
     </Navbar>

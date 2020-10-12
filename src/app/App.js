@@ -37,9 +37,8 @@ const App = () => {
     <ThemeProvider theme={theme === 'light' ? lightMode : darkMode}>
       <GlobalStyles />
       <div className="container">
-        <button onClick={() => toggler(user.id)}>toggle</button>
         <h1 className="logo">Blogbook</h1>
-        <Navigation user={user} />
+        <Navigation toggler={toggler} user={user} />
         <Switch>
           <Route path="/users">
             <UserPage />

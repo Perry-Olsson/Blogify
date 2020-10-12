@@ -4,10 +4,10 @@ import Notification from '../notifacations/Notification';
 import Togglable from '../togglable/Togglable';
 import Login from '../login/Login';
 
-const Navigation = ({ user }) => {
+const Navigation = ({ user, toggler }) => {
   return user ? (
     <>
-      <NavBar user={user} />
+      <NavBar user={user} toggler={toggler} />
       <Notification />
     </>
   )
