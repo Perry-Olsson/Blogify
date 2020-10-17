@@ -76,7 +76,7 @@ blogsRouter.put('/:id/comments', async (request, response) => {
     request.params.id,
     { $push: { comments: comment } },
     { new: true }
-  )
+  ).populate('user', { username: 1, name: 1 })
   commentedBlog
     ? response.json(commentedBlog)
     : response

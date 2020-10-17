@@ -15,6 +15,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '../components/gobalStyles';
 import { lightMode, darkMode } from '../components/themes';
 import './App.css';
+// import TestComponent  from '../TestComponent';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ const App = () => {
           </Route>
         </Switch>
       </div>
+      {/* <TestComponent /> */}
     </ThemeProvider>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import userService  from '../services/users';
 import { saveLike, setLikes, logoutUser, createNotification } from '../reducers';
@@ -42,10 +42,18 @@ export const useGetAndSetLikes = () => {
   const dispatch = useDispatch();
 
   const handleError = (error) => {
-    if (error.response.data.error === 'User not found') dispatch(logoutUser());
-    else dispatch(
-      createNotification({ type: 'danger', message: error.response.data.error }, 5)
+    if (error.response) {
+      if (error.response.data.error === 'User not found')
+        dispatch(logoutUser());
+      else
+        dispatch(createNotification({ type: 'danger', message: error.response.data.error }))
+    }
+    else {
+      dispatch(
+      createNotification({ type: 'danger', message: 'Oops something went wrong on the server :(' })
     );
+    console.log(error.response)
+    }
   };
 
   const main = async (user) => {
@@ -75,3 +83,20 @@ export const useDarkMode = (userTheme) => {
 
   return [theme, themeToggler];
 };
+
+export const useInterval = (callback, delay) => {
+  const savedCallback = useRef(callback);
+
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    const tick = () => savedCallback.current();
+
+    if (delay !== null) {
+      let id = setInterval(tick, delay)
+      return () => clearInterval(id)
+    }
+  }, [delay])
+}
