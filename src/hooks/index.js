@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import userService  from '../services/users';
-import { saveLike, setLikes, logoutUser, createNotification } from '../reducers';
+import { saveLike, saveRemoveLike, setLikes, logoutUser, createNotification } from '../reducers';
 
 export const useLikeBlog = (blog, user) => {
   const dispatch = useDispatch();
@@ -12,7 +12,12 @@ export const useLikeBlog = (blog, user) => {
     blog.likes++;
     dispatch(saveLike(user, blog));
   };
-  return like;
+
+  const removeLike = () => {
+    blog.likes--;
+    dispatch(saveRemoveLike(user, blog))
+  }
+  return [like, removeLike];
 };
 
 export const useField = (type, id) => {

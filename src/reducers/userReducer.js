@@ -85,6 +85,23 @@ export const saveLike = (userId, blog) => {
   };
 };
 
+export const saveRemoveLike = (userId, blog) => {
+  return async dispatch => {
+    try {
+      const user = await userService.removeLike(userId, blog.id);
+      dispatch({ type: 'LIKE', user });
+      dispatch(likeBlog(blog));
+    } catch (e) {
+      dispatch(
+        createNotification(
+          { type: 'danger', message: e.response.data.error },
+          5
+        )
+      );
+    }
+  };
+};
+
 export const logoutUser = () => {
   window.localStorage.removeItem('loggedUser');
   return {

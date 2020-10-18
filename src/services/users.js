@@ -15,6 +15,14 @@ const like = async (userId, blogId) => {
   return response.data;
 };
 
+const removeLike = async (userId, blogId) => {
+  const config = {
+    headers: { Authorization: token }
+  }
+  const response = await axios.post(`${baseUrl}/removeLike/${userId}/${blogId}`, null, config)
+  return response.data
+}
+
 const getLikes = async user => {
   const response = await axios.get(`${baseUrl}/likes/${user.id}`);
   user.likes = response.data.likes;
@@ -34,4 +42,4 @@ const getTheme = async (id) => {
   return response.data;
 };
 
-export default { getAll, like, getLikes, setTheme, getTheme };
+export default { getAll, like, removeLike, getLikes, setTheme, getTheme };

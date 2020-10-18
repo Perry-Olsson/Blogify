@@ -25,13 +25,17 @@ const App = () => {
 
   useEffect(() => {
     dispatch(initializeBlogs());
+  }, [dispatch])
+
+  useEffect(() => {
+    if (!user) {
     const loggedUser = window.localStorage.getItem('loggedUser');
-    if (loggedUser && !user) {
+    if (loggedUser) {
       let localUser = JSON.parse(loggedUser);
       dispatch(setUser(localUser));
       getAndSetLikes(localUser);
     }
-
+  }
   }, [dispatch, getAndSetLikes, user]);
 
   return (
