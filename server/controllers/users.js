@@ -30,7 +30,7 @@ usersRouter.post('/like/:userId/:blogId', async (request, response) => {
   const blogId = request.params.blogId
   const decodedToken = jwt.verify(request.token, process.env.SECRET)
   if (!request.token || !decodedToken.id) {
-    return response.status(401).json({ error: 'token missing or invalid' })
+    return response.status(400).json({ error: 'token missing or invalid' })
   }
   const user = await User.findById(request.params.userId)
   if (user.likes.get(blogId))
@@ -39,6 +39,20 @@ usersRouter.post('/like/:userId/:blogId', async (request, response) => {
       .json({ error: 'blog as been liked by this user already' })
   user.likes.set(blogId, 'true')
   const userForResponse = await user.save()
+  response.json(userForResponse)
+})
+
+usersRouter.post('/removeLike/:userId/:blogId', async (request, response) => {
+  const blogId = request.params.blogId
+  const decodedToken = jwt.verify(request.token, process.env.SECRET)
+
+  if (!request.token || !decodedToken.id)
+    return response.status(400).json({ error: 'token missing or invalid' })
+
+  const user = await User.findById(request.params.userId)
+  user.likes.delete(blogId)
+  
+  const userForResponse = await user.save();
   response.json(userForResponse)
 })
 
