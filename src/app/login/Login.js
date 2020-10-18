@@ -10,11 +10,11 @@ import './Login.css';
 const Login = () => {
   const dispatch = useDispatch();
   const [username, resetUsername] = useField('text', 'username');
-  const [password, resetPassword] = useField('text', 'password');
+  const [password, resetPassword] = useField('password', 'password');
 
   const handleLogin = async event => {
     event.preventDefault();
-    dispatch(loginUser(username.value, password));
+    dispatch(loginUser(username.value, password.value));
     resetUsername();
     resetPassword();
   };
