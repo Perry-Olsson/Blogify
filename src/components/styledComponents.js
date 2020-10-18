@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button } from 'react-bootstrap';
+import { Button, ListGroupItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export const StyledButton = styled(Button)`
@@ -55,3 +55,7 @@ export const StyledLink = styled(Link)`
   }
 `;
 
+export const StyledListGroupItem = styled(ListGroupItem)`
+color: ${({ theme }) => theme.text};
+background: ${({ theme }) => theme.body};
+border-color: ${({ theme }) => theme.background};`

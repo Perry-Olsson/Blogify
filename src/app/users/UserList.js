@@ -1,5 +1,6 @@
 import React from 'react';
 import User from './User';
+import { StyledListGroupItem } from '../../components/styledComponents'
 import { ListGroup } from 'react-bootstrap';
 
 const UserList = ({ users }) => (
@@ -11,9 +12,9 @@ const UserList = ({ users }) => (
     </div>
     <ListGroup>
       {users.map(user =>
-        <ListGroup.Item key={user.id}>
+        <StyledListGroupItem style={{ backgroundColor: 'inherit', borderColor: 'inherit' }} key={user.id}>
           <User  user={user} />
-        </ListGroup.Item>)
+        </StyledListGroupItem>)
       }
     </ListGroup>
   </div>

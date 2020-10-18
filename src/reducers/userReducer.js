@@ -60,7 +60,7 @@ export const loginUser = (username, password) => {
     } catch (exception) {
       dispatch(
         createNotification(
-          { type: 'danger', message: exception.response.data && exception.response.data.error || exception.message },
+          { type: 'danger', message: (exception.response.data && exception.response.data.error) || exception.message },
           5
         )
       );
