@@ -8,7 +8,15 @@ const Togglable = props => {
   const hideWhenVisible = { display: visible ? 'none' : '' };
   const showWhenVisible = { display: visible ? '' : 'none' };
 
-  const toggleVisibility = () => setVisible(!visible);
+  const toggleVisibility = () => {
+    setVisible(!visible);
+    if (props.setFormVisible) {
+      if (!visible)
+        props.setFormVisible(props.buttonLabel)
+      else 
+        props.setFormVisible('neither')
+    }
+  }
   return (
     <>
       <div style={showWhenVisible}>
@@ -23,6 +31,7 @@ const Togglable = props => {
       </div>
       <div style={hideWhenVisible} className="togglableContent">
         <StyledButtonOutline
+          style={props.style}
           onClick={toggleVisibility}
           variant="outline-dark"
           size={props.size || 'md'}
