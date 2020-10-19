@@ -1,6 +1,6 @@
 import React from 'react';
 import User from './User';
-import { StyledListGroupItem } from '../../components/styledComponents'
+import { StyledListGroupItem } from '../../components/styledComponents';
 import { ListGroup } from 'react-bootstrap';
 
 const UserList = ({ users }) => (

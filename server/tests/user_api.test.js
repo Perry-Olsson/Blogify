@@ -33,7 +33,7 @@ describe('with initially one user in the database', () => {
       password: 'kitty',
     }
 
-    const response = await api
+    await api
       .post('/api/users')
       .send(newUser)
       .expect(200)
@@ -97,10 +97,9 @@ describe('with multiple users in the database', () => {
       passwordHash,
     })
     const user = await blogAdder.save()
-    const response = await api
+    await api
       .post('/api/login')
       .send({ username: blogAdder.username, password: 'blogAdderPass' })
-    const loggedUser = response.body
     for (let blog of helper.initialBlogs) {
       const newBlog = new Blog({ ...blog, user: user._id })
       await newBlog.save()

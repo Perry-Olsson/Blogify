@@ -58,4 +58,4 @@ export const StyledLink = styled(Link)`
 export const StyledListGroupItem = styled(ListGroupItem)`
 color: ${({ theme }) => theme.text};
 background: ${({ theme }) => theme.body};
-border-color: ${({ theme }) => theme.background};`
+border-color: ${({ theme }) => theme.background};`;

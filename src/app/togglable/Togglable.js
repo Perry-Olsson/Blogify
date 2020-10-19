@@ -12,11 +12,11 @@ const Togglable = props => {
     setVisible(!visible);
     if (props.setFormVisible) {
       if (!visible)
-        props.setFormVisible(props.buttonLabel)
-      else 
-        props.setFormVisible('neither')
+        props.setFormVisible(props.buttonLabel);
+      else
+        props.setFormVisible('neither');
     }
-  }
+  };
   return (
     <>
       <div style={showWhenVisible}>

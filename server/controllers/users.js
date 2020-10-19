@@ -51,8 +51,8 @@ usersRouter.post('/removeLike/:userId/:blogId', async (request, response) => {
 
   const user = await User.findById(request.params.userId)
   user.likes.delete(blogId)
-  
-  const userForResponse = await user.save();
+
+  const userForResponse = await user.save()
   response.json(userForResponse)
 })
 

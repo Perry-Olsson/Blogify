@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
-import { StyledButton } from '../../../components/styledComponents'
+import React from 'react';
+import { useField } from '../../../hooks';
+import { StyledButton, StyledInput } from '../../../components/styledComponents';
 
 const AddComment = ({ createComment, toggleVisibility }) => {
-  const [comment, setComment] = useState('');
+  const [comment, resetComment] = useField('text', 'comment');
 
   const addCommentAndToggleForm = (event, comment) => {
     event.preventDefault();
-    createComment(comment);
-    toggleVisibility();
+    if (comment.value) {
+      createComment(comment.value);
+      resetComment();
+      toggleVisibility();
+    }
   };
 
   return (
     <form onSubmit={event => addCommentAndToggleForm(event, comment)}>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <input
-          type="text"
-          value={comment}
-          onChange={({ target }) => setComment(target.value)}
+        <StyledInput
+          { ...comment }
         />
         <StyledButton
           size='sm'

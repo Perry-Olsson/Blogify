@@ -2,8 +2,19 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Togglable from '../../togglable/Togglable';
 import AddComment from './AddComment';
+import CustomToggle from '../../../components/CustomToggle';
+import { Dropdown } from 'react-bootstrap';
 import './blogProfile.css';
-import OptionsIcon from '../../../components/optionsIcon/OptionsIcon';
+
+const optionsButtonContainerStyle = {
+  lineHeight: '2',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  width: '33em',
+  margin: '1em 0',
+  padding: '0.5em 0'
+};
 
 const CommentSection = ({ blog, del, createComment }) => {
   const user = useSelector(state => state.user);
@@ -13,12 +24,31 @@ const CommentSection = ({ blog, del, createComment }) => {
         <h4>Comments:</h4>
         <ul>
           {blog.comments.map((comment, i) => (
-            <div className='optionsButtonContainer' style={{ display: 'flex', alignItems: 'center', width: '8em', height: '2em' }} key={i}><li>
-              {comment.comment}
-            </li>
-            {user && user.username === comment.user && (
-              <OptionsIcon id='comment' size='sm'  style={{ marginLeft:'2em' }} className='optionsButton' />
-            )}
+            <div className='optionsButtonContainer' style={optionsButtonContainerStyle} key={i}>
+              <li style={{ width: '29em' }}>
+                {comment.comment}
+              </li>
+              {user && user.username === comment.user && (
+                <Dropdown style={{ alignSelf: 'center' }}>
+                  <Dropdown.Toggle as={CustomToggle}
+                    id='nav'
+                    size='sm'
+                    style={{ marginLeft: '0.8em' }}
+                    className='optionsButton danger'
+                  >
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className='optionsButton'>
+                    <Dropdown.Item
+                      className='optionsButtonContainer'
+                      as='button'
+                      onClick={() => del(comment.id)}
+                      style={{ color: 'red' }}
+                    >
+                    Delete Comment
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              )}
             </div>
           ))}
         </ul>

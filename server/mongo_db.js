@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const config = require('./utils/config')
-const logger = require('./utils/logger')
 const Blog = require('./models/blog')
 const User = require('./models/user')
 const helper = require('./tests/test_helper')

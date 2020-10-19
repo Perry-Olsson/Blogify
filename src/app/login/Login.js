@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { StyledInput } from '../../components/styledComponents';
 import { Button } from 'react-bootstrap';
-import './Login.css';
+import './login.css';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -23,13 +23,13 @@ const Login = () => {
     <div className="loginForm-cy">
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
-        <div>
+        <div className='field'>
           <label>username</label>
-          <StyledInput { ...username } />
+          <StyledInput style={{ height: '2em', width: '17em' }} { ...username } />
         </div>
-        <div>
+        <div className='field'>
           <label>password</label>
-          <StyledInput { ...password } />
+          <StyledInput style={{ height: '2em', width: '17em' }} { ...password } />
         </div>
         <Button id="loginButton" className="login" type="submit" variant="dark">
           login

@@ -7,6 +7,11 @@ const getAll = async () => {
   return response.data;
 };
 
+const create = async (user) => {
+  const response = await axios.post(baseUrl, user);
+  return response.data;
+};
+
 const like = async (userId, blogId) => {
   const config = {
     headers: { Authorization: token },
@@ -18,10 +23,10 @@ const like = async (userId, blogId) => {
 const removeLike = async (userId, blogId) => {
   const config = {
     headers: { Authorization: token }
-  }
-  const response = await axios.post(`${baseUrl}/removeLike/${userId}/${blogId}`, null, config)
-  return response.data
-}
+  };
+  const response = await axios.post(`${baseUrl}/removeLike/${userId}/${blogId}`, null, config);
+  return response.data;
+};
 
 const getLikes = async user => {
   const response = await axios.get(`${baseUrl}/likes/${user.id}`);
@@ -42,4 +47,4 @@ const getTheme = async (id) => {
   return response.data;
 };
 
-export default { getAll, like, removeLike, getLikes, setTheme, getTheme };
+export default { getAll, create, like, removeLike, getLikes, setTheme, getTheme };

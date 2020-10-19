@@ -1,19 +1,20 @@
-import React from 'react'
-import OptionsIcon from './optionsIcon/OptionsIcon'
+import React from 'react';
+import OptionsIcon from './optionsIcon/OptionsIcon';
 
 const CustomToggle = React.forwardRef(({ children, onClick, ...restProps }, ref) => {
   return (
-  <div ref={ref}>
-    <OptionsIcon onClick={(e) => {
-        e.preventDefault()
+    <div ref={ref}>
+      <OptionsIcon onClick={(e) => {
+        e.preventDefault();
         onClick(e);
-      }} 
+      }}
       {...restProps}
       >
         {children}
-    </OptionsIcon>
-  </div>
-)})
-    
+      </OptionsIcon>
+    </div>
+  );});
 
-export default CustomToggle
+CustomToggle.displayName = 'CustomToggle';
+
+export default CustomToggle;

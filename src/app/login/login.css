@@ -1,0 +1,14 @@
+label {
+  padding-right: 1rem;
+  font-size: 1.3rem;
+}
+
+.login {
+  margin: 1rem 0;
+}
+
+.field {
+  width: 25em;
+  display: flex;
+  justify-content: space-between;
+}

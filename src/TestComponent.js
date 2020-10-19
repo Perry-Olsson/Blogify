@@ -50,8 +50,8 @@
 //     // console.log(dot, dot[0].offsetLeft, dot[0].offsetTop)
 
 // const calculateCircleCoords = () => {
-  
-// }    
+
+// }
 // const TestComponent = () => {
 //   const [pos, setPos] = useState([1440, 310])
 //   const [done, setDone] = useState(false)

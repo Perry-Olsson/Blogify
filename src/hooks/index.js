@@ -15,8 +15,8 @@ export const useLikeBlog = (blog, user) => {
 
   const removeLike = () => {
     blog.likes--;
-    dispatch(saveRemoveLike(user, blog))
-  }
+    dispatch(saveRemoveLike(user, blog));
+  };
   return [like, removeLike];
 };
 
@@ -51,13 +51,13 @@ export const useGetAndSetLikes = () => {
       if (error.response.data.error === 'User not found')
         dispatch(logoutUser());
       else
-        dispatch(createNotification({ type: 'danger', message: error.response.data.error }))
+        dispatch(createNotification({ type: 'danger', message: error.response.data.error }));
     }
     else {
       dispatch(
-      createNotification({ type: 'danger', message: 'Oops something went wrong on the server :(' })
-    );
-    console.log(error.response)
+        createNotification({ type: 'danger', message: 'Oops something went wrong on the server :(' })
+      );
+      console.log(error.response);
     }
   };
 
@@ -100,8 +100,8 @@ export const useInterval = (callback, delay) => {
     const tick = () => savedCallback.current();
 
     if (delay !== null) {
-      let id = setInterval(tick, delay)
-      return () => clearInterval(id)
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
     }
-  }, [delay])
-}
+  }, [delay]);
+};

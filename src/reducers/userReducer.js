@@ -21,6 +21,22 @@ const userReducer = (state = null, action) => {
   }
 };
 
+export const createUser = newUser => {
+  return async dispatch => {
+    try {
+      const user = await userService.create(newUser);
+      dispatch(loginUser(user.username, newUser.password, 'Account created!'));
+    } catch (exception) {
+      dispatch(
+        createNotification(
+          { type: 'danger', message: (exception.response.data && exception.response.data.error) || exception.message },
+          5
+        )
+      );
+    }
+  };
+};
+
 export const setUser = user => {
   return dispatch => {
     try {
@@ -44,7 +60,7 @@ export const setLikes = likes => {
   };
 };
 
-export const loginUser = (username, password) => {
+export const loginUser = (username, password, message='login successful') => {
   return async dispatch => {
     try {
       const user = await loginService.login({ username, password });
@@ -55,7 +71,7 @@ export const loginUser = (username, password) => {
       });
       window.localStorage.setItem('loggedUser', JSON.stringify({ username: user.username, id: user.id, token: user.token }));
       dispatch(
-        createNotification({ type: 'success', message: 'login successful' }, 5)
+        createNotification({ type: 'success', message }, 5)
       );
     } catch (exception) {
       dispatch(
