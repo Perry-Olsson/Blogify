@@ -9,59 +9,59 @@
 
 const getTopAuthor = (blogs, metric='blogs') => {
   if (!blogs.length)
-    return 'No Blogs'
-  const blogTracker = {}
-  let topAuthor = ''
-  let max = 0
+    return 'No Blogs';
+  const blogTracker = {};
+  let topAuthor = '';
+  let max = 0;
   blogs.forEach(blog => {
     if (!blogTracker[blog.author])
-      blogTracker[blog.author] = blog[metric] || 1
+      blogTracker[blog.author] = blog[metric] || 1;
     else
-      blogTracker[blog.author] += blog[metric] || 1
+      blogTracker[blog.author] += blog[metric] || 1;
     if (blogTracker[blog.author] > max) {
-      topAuthor = blog.author
-      max = blogTracker[blog.author]
+      topAuthor = blog.author;
+      max = blogTracker[blog.author];
     }
-  })
+  });
   const returnObject = {
     'author': topAuthor
-  }
-  returnObject[metric] = max
-  return returnObject
-}
+  };
+  returnObject[metric] = max;
+  return returnObject;
+};
 
 const dummy = () => {
-  return 1
-}
+  return 1;
+};
 
 const totalLikes = blogs => {
-  const reducer = (sum, blog) => sum + blog.likes
-  return blogs.reduce(reducer, 0)
-}
+  const reducer = (sum, blog) => sum + blog.likes;
+  return blogs.reduce(reducer, 0);
+};
 
 const favoriteBlog = blogs => {
-  let indexOfFavoriteBlog= 0
-  let mostLikes = 0
+  let indexOfFavoriteBlog= 0;
+  let mostLikes = 0;
   blogs.forEach((blog, index) => {
     if (blog.likes > mostLikes) {
-      indexOfFavoriteBlog = index
-      mostLikes = blog.likes
+      indexOfFavoriteBlog = index;
+      mostLikes = blog.likes;
     }
-  })
+  });
   return {
     title: blogs[indexOfFavoriteBlog].title,
     author: blogs[indexOfFavoriteBlog].author,
     likes: mostLikes
-  }
-}
+  };
+};
 
 const mostBlogs = blogs => {
-  return getTopAuthor(blogs)
-}
+  return getTopAuthor(blogs);
+};
 
 const mostLikes = blogs => {
-  return getTopAuthor(blogs, 'likes')
-}
+  return getTopAuthor(blogs, 'likes');
+};
 
 module.exports = {
   dummy,
@@ -69,4 +69,4 @@ module.exports = {
   favoriteBlog,
   mostBlogs,
   mostLikes
-}
+};

@@ -1,5 +1,5 @@
-const Blog = require('../models/blog')
-const User = require('../models/user')
+const Blog = require('../models/blog');
+const User = require('../models/user');
 
 const initialBlogs = [
   { title: 'React patterns', author: 'Michael Chan', url: 'https://reactpatterns.com/', likes: 7 },
@@ -8,14 +8,14 @@ const initialBlogs = [
   { title: 'First class tests', author: 'Robert C. Martin', url: 'http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll', likes: 10 },
   { title: 'TDD harms architecture', author: 'Robert C. Martin', url: 'http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html', likes: 0 },
   { title: 'Type wars', author: 'Robert C. Martin', url: 'http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html', likes: 2 }
-]
+];
 
 const initialUsers = [
   { username: 'SamIam', name: 'Samantha', password: 'samspassword' },
   { username: 'Johnyboy', name: 'John', password: 'johnspassword' },
   { username: 'bigspeedoguy', name: 'rob', password: 'needforspeedo' },
   { username: 'turkeyjerky', name: 'oboyoberto', password: 'mmmmmmmmm...thatsgood' }
-]
+];
 
 const nonExistingId = async () => {
   const blog = new Blog({
@@ -23,28 +23,28 @@ const nonExistingId = async () => {
     author: 'cya',
     url: 'www.bye.com',
     likes: '1023'
-  })
-  await blog.save()
-  await blog.remove()
+  });
+  await blog.save();
+  await blog.remove();
 
-  return blog._id.toString()
-}
+  return blog._id.toString();
+};
 
 const blogsInDb = async () => {
-  const blogs = await Blog.find({})
-  return blogs.map(blog => blog.toJSON())
-}
+  const blogs = await Blog.find({});
+  return blogs.map(blog => blog.toJSON());
+};
 
 const usersInDb = async () => {
-  const users = await User.find({})
-  return users.map(user => user.toJSON())
-}
+  const users = await User.find({});
+  return users.map(user => user.toJSON());
+};
 
 const getBlog = async (id) => {
-  const blog = await Blog.findById(id)
-  return blog.toJSON()
-}
+  const blog = await Blog.findById(id);
+  return blog.toJSON();
+};
 
 module.exports = {
   initialBlogs, initialUsers, nonExistingId, blogsInDb, usersInDb, getBlog
-}
+};
