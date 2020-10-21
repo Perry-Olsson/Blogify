@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
 import Notification from '../notifacations/Notification';
 import Togglable from '../togglable/Togglable';
@@ -7,6 +7,10 @@ import Login from '../login/Login';
 
 const Navigation = ({ user, toggler }) => {
   const [formVisible, setFormVisible] = useState('neither');
+
+  const username = user ? user.username : user
+
+  useEffect(() => () => setFormVisible('neither'), [username])
 
   return user ? (
     <>
