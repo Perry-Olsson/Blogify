@@ -8,9 +8,9 @@ import Login from '../login/Login';
 const Navigation = ({ user, toggler }) => {
   const [formVisible, setFormVisible] = useState('neither');
 
-  const username = user ? user.username : user
+  const username = user ? user.username : user;
 
-  useEffect(() => () => setFormVisible('neither'), [username])
+  useEffect(() => () => setFormVisible('neither'), [username]);
 
   return user ? (
     <>

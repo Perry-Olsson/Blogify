@@ -7,7 +7,7 @@ import { StyledInput } from '../../components/styledComponents';
 import { Button } from 'react-bootstrap';
 import './login.css';
 
-const Login = ({ setFormVisible }) => {
+const Login = () => {
   const dispatch = useDispatch();
   const [username, resetUsername] = useField('text', 'username');
   const [password, resetPassword] = useField('password', 'password');

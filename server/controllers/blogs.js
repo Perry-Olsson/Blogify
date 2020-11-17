@@ -39,7 +39,6 @@ blogsRouter.post('/', async (request, response) => {
 });
 blogsRouter.put('/:id', async (request, response) => {
   const blog = { ...request.body };
-  console.log(blog);
   const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, {
     runValidators: true,
     context: 'query',

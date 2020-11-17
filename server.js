@@ -26,11 +26,13 @@ app.use(cors());
 app.use(express.json());
 app.use(middleware.getTokenFromRequest);
 
-if (process.env.NODE_ENV !== 'production') 
+if (process.env.NODE_ENV !== 'production') {
   app.use(middleware.requestLogger);
+}
+
 else if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '/build')))
-  app.use('/blogs/:id', express.static(path.join(__dirname, '/build'))) // eslint-disable-line
+  app.use(express.static(path.join(__dirname, '/build')));
+  app.use('/blogs/:id', express.static(path.join(__dirname, '/build'))); // eslint-disable-line
 }
 
 app.use('/api/blogs', blogsRouter);
