@@ -1,16 +1,16 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useField } from '../../hooks';
-import { createUser } from '../../reducers';
-import { StyledInput } from '../../components/styledComponents';
-import { Button } from 'react-bootstrap';
-import '../login/login.css';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useField } from "../../hooks";
+import { createUser } from "../../reducers";
+import { StyledInput } from "../../components/styledComponents";
+import { Button } from "react-bootstrap";
+import "../login/login.css";
 
 const SignUp = () => {
   const dispatch = useDispatch();
-  const [username, resetUsername] = useField('text', 'signUpUsername');
-  const [name, resetName] = useField('text', 'signUpName');
-  const [password, resetPassword] = useField('password', 'signUpPassword');
+  const [username, resetUsername] = useField("text", "signUpUsername");
+  const [name, resetName] = useField("text", "signUpName");
+  const [password, resetPassword] = useField("password", "signUpPassword");
 
   const handleSignUp = async event => {
     event.preventDefault();
@@ -30,15 +30,15 @@ const SignUp = () => {
       <form onSubmit={handleSignUp}>
         <div className='field'>
           <label>username</label>
-          <StyledInput style={{ height: '2em', width: '17em' }} { ...username } />
+          <StyledInput style={{ height: "2em", width: "17em" }} { ...username } />
         </div>
         <div className='field'>
           <label>name</label>
-          <StyledInput style={{ height: '2em', width: '17em' }} { ...name } />
+          <StyledInput style={{ height: "2em", width: "17em" }} { ...name } />
         </div>
         <div className='field'>
           <label>password</label>
-          <StyledInput style={{ height: '2em', width: '17em' }} { ...password } />
+          <StyledInput style={{ height: "2em", width: "17em" }} { ...password } />
         </div>
         <Button className="login" type="submit" variant="dark">
         Sign Up

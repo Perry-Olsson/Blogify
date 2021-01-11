@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { StyledButtonOutline } from '../../components/styledComponents';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { StyledButtonOutline } from "../../components/styledComponents";
 
 const Togglable = props => {
   const [visible, setVisible] = useState(props.visible);
 
-  const hideWhenVisible = { display: visible ? 'none' : '' };
-  const showWhenVisible = { display: visible ? '' : 'none' };
+  const hideWhenVisible = { display: visible ? "none" : "" };
+  const showWhenVisible = { display: visible ? "" : "none" };
 
   const toggleVisibility = () => {
     setVisible(!visible);
@@ -14,7 +14,7 @@ const Togglable = props => {
       if (!visible)
         props.setFormVisible(props.buttonLabel);
       else
-        props.setFormVisible('neither');
+        props.setFormVisible("neither");
     }
   };
   return (
@@ -24,7 +24,7 @@ const Togglable = props => {
         <StyledButtonOutline
           onClick={toggleVisibility}
           variant="outline-secondary"
-          size={props.size || 'md'}
+          size={props.size || "md"}
         >
           cancel
         </StyledButtonOutline>
@@ -34,7 +34,7 @@ const Togglable = props => {
           style={props.style}
           onClick={toggleVisibility}
           variant="outline-dark"
-          size={props.size || 'md'}
+          size={props.size || "md"}
         >
           {props.buttonLabel}
         </StyledButtonOutline>
@@ -47,6 +47,6 @@ Togglable.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
 };
 
-Togglable.displayName = 'Togglable';
+Togglable.displayName = "Togglable";
 
 export default Togglable;

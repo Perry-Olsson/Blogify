@@ -1,17 +1,17 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { addBlog } from '../../../../reducers/blogReducer';
-import { createNotification } from '../../../../reducers/notificationReducer';
-import blogService from '../../../../services/blogs';
-import { useField } from '../../../../hooks';
-import { StyledInput, StyledButton } from '../../../../components/styledComponents';
-import './AddBlog.css';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { addBlog } from "../../../../reducers/blogReducer";
+import { createNotification } from "../../../../reducers/notificationReducer";
+import blogService from "../../../../services/blogs";
+import { useField } from "../../../../hooks";
+import { StyledInput, StyledButton } from "../../../../components/styledComponents";
+import "./AddBlog.css";
 
 const AddBlog = ({ toggleVisibility }) => {
   const dispatch = useDispatch();
-  const [title, resetTitle] = useField('text', 'title');
-  const [author, resetAuthor] = useField('text', 'author');
-  const [url, resetUrl] = useField('text', 'url');
+  const [title, resetTitle] = useField("text", "title");
+  const [author, resetAuthor] = useField("text", "author");
+  const [url, resetUrl] = useField("text", "url");
 
   const createBlog = async event => {
     event.preventDefault();
@@ -29,7 +29,7 @@ const AddBlog = ({ toggleVisibility }) => {
       exception.response
         ? dispatch(
           createNotification(
-            { type: 'danger', message: exception.response.data.error },
+            { type: "danger", message: exception.response.data.error },
             5
           )
         )
@@ -41,7 +41,7 @@ const AddBlog = ({ toggleVisibility }) => {
   const dispatchAndToggleForm = newBlog => {
     clearForm();
     dispatch(addBlog(newBlog));
-    dispatch(createNotification({ type: 'success', message: 'blog added' }, 5));
+    dispatch(createNotification({ type: "success", message: "blog added" }, 5));
     toggleVisibility();
   };
 
@@ -57,7 +57,7 @@ const AddBlog = ({ toggleVisibility }) => {
       className="flex-column margin-bottom"
       onSubmit={createBlog}
     >
-      <h2 style={{ fontFamily: 'Anton, sans-serif' }}>New Blog</h2>
+      <h2 style={{ fontFamily: "Anton, sans-serif" }}>New Blog</h2>
       <label>title: </label>
       <StyledInput {...title} />
       <label>author: </label>
@@ -67,7 +67,7 @@ const AddBlog = ({ toggleVisibility }) => {
       <StyledButton
         id="createBlog"
         type="submit"
-        style={{ margin: '1rem 0' }}
+        style={{ margin: "1rem 0" }}
       >
         create
       </StyledButton>

@@ -1,13 +1,13 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import Blogs from './blogs/Blogs';
-import BlogProfile from './blogProfile';
+import React from "react";
+import { useSelector } from "react-redux";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
+import Blogs from "./blogs/Blogs";
+import BlogProfile from "./blogProfile";
 
 const BlogPage = ({ user }) => {
   const blogs = useSelector(state => state.blogs);
 
-  const match = useRouteMatch('/blogs/:id');
+  const match = useRouteMatch("/blogs/:id");
   const matchedBlog = match
     ? blogs.find(blog => blog.id === match.params.id)
     : null;

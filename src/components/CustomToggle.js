@@ -1,5 +1,5 @@
-import React from 'react';
-import OptionsIcon from './optionsIcon/OptionsIcon';
+import React from "react";
+import OptionsIcon from "./optionsIcon/OptionsIcon";
 
 const CustomToggle = React.forwardRef(({ children, onClick, ...restProps }, ref) => {
   return (
@@ -15,6 +15,6 @@ const CustomToggle = React.forwardRef(({ children, onClick, ...restProps }, ref)
     </div>
   );});
 
-CustomToggle.displayName = 'CustomToggle';
+CustomToggle.displayName = "CustomToggle";
 
 export default CustomToggle;

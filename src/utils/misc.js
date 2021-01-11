@@ -1,4 +1,4 @@
 export const getLocalTheme = () => {
-  return window.localStorage.getItem('theme');
+  return window.localStorage.getItem("theme");
 };
 

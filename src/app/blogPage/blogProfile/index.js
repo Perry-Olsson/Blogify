@@ -1,13 +1,13 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   addComment,
   deleteComment,
   deleteBlog,
-} from '../../../reducers/blogReducer';
-import Profile from './Profile';
-import CommentSection from './CommentSection';
-import './blogProfile.css';
+} from "../../../reducers/blogReducer";
+import Profile from "./Profile";
+import CommentSection from "./CommentSection";
+import "./blogProfile.css";
 
 const BlogProfile = ({ blog }) => {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const BlogProfile = ({ blog }) => {
   };
 
   return (
-    <div style={{ margin: '2em 0' }}>
+    <div style={{ margin: "2em 0" }}>
       <Profile blog={blog} confirmDeletion={confirmDeletion} />
       <CommentSection blog={blog} del={del} createComment={createComment} />
     </div>

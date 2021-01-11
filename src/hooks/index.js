@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import userService  from '../services/users';
-import { saveLike, saveRemoveLike, setLikes, logoutUser, createNotification } from '../reducers';
+import { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import userService  from "../services/users";
+import { saveLike, saveRemoveLike, setLikes, logoutUser, createNotification } from "../reducers";
 
 export const useLikeBlog = (blog, user) => {
   const dispatch = useDispatch();
@@ -21,14 +21,14 @@ export const useLikeBlog = (blog, user) => {
 };
 
 export const useField = (type, id) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
   const onChange = event => {
     setValue(event.target.value);
   };
 
   const reset = () => {
-    setValue('');
+    setValue("");
   };
 
   return [
@@ -48,14 +48,14 @@ export const useGetAndSetLikes = () => {
 
   const handleError = (error) => {
     if (error.response) {
-      if (error.response.data.error === 'User not found')
+      if (error.response.data.error === "User not found")
         dispatch(logoutUser());
       else
-        dispatch(createNotification({ type: 'danger', message: error.response.data.error }));
+        dispatch(createNotification({ type: "danger", message: error.response.data.error }));
     }
     else {
       dispatch(
-        createNotification({ type: 'danger', message: 'Oops something went wrong on the server :(' })
+        createNotification({ type: "danger", message: "Oops something went wrong on the server :(" })
       );
       console.log(error.response);
     }
@@ -74,16 +74,16 @@ export const useGetAndSetLikes = () => {
 };
 
 export const useDarkMode = (userTheme) => {
-  const [theme, setTheme] = useState(userTheme || 'light');
+  const [theme, setTheme] = useState(userTheme || "light");
 
   const setMode = async (mode, id) => {
     const userFromDb =  await userService.setTheme({ theme: mode }, id);
-    window.localStorage.setItem('theme', userFromDb.theme);
+    window.localStorage.setItem("theme", userFromDb.theme);
     setTheme(userFromDb.theme);
   };
 
   const themeToggler = (userId) => {
-    theme === 'light' ? setMode('dark', userId) : setMode('light', userId);
+    theme === "light" ? setMode("dark", userId) : setMode("light", userId);
   };
 
   return [theme, themeToggler];

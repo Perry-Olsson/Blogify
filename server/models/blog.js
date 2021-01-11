@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-mongoose.set('useFindAndModify', false);
+mongoose.set("useFindAndModify", false);
 
 const commentSchema = mongoose.Schema({
   comment: {
@@ -32,7 +32,7 @@ const blogSchema = mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: "User"
   },
   comments: {
     type: [commentSchema],
@@ -40,14 +40,14 @@ const blogSchema = mongoose.Schema({
   }
 });
 
-commentSchema.set('toJSON', {
+commentSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
   }
 });
 
-blogSchema.set('toJSON', {
+blogSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
@@ -55,4 +55,4 @@ blogSchema.set('toJSON', {
   }
 });
 
-module.exports = mongoose.model('Blog', blogSchema);
+module.exports = mongoose.model("Blog", blogSchema);

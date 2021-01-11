@@ -1,13 +1,13 @@
-import axios from 'axios';
-import loginHelper from '../utils/loginHelper';
-const baseUrl = '/api/blogs';
+import axios from "axios";
+import loginHelper from "../utils/loginHelper";
+const baseUrl = "/api/blogs";
 
 export let token = null;
 
 const setToken = newToken => {
   if (!newToken) {
     token = loginHelper.getUserToken();
-    if (!token) throw new Error('Must log in');
+    if (!token) throw new Error("Must log in");
   } else token = `bearer ${newToken}`;
 };
 

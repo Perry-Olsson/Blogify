@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { token } from './blogs';
-const baseUrl = '/api/users';
+import axios from "axios";
+import { token } from "./blogs";
+const baseUrl = "/api/users";
 
 const getAll = async () => {
   const response = await axios.get(baseUrl);

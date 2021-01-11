@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import NavBar from './NavBar';
-import Notification from '../notifacations/Notification';
-import Togglable from '../togglable/Togglable';
-import SignUp from '../signUp/SignUp';
-import Login from '../login/Login';
+import React, { useState, useEffect } from "react";
+import NavBar from "./NavBar";
+import Notification from "../notifacations/Notification";
+import Togglable from "../togglable/Togglable";
+import SignUp from "../signUp/SignUp";
+import Login from "../login/Login";
 
 const Navigation = ({ user, toggler }) => {
-  const [formVisible, setFormVisible] = useState('neither');
+  const [formVisible, setFormVisible] = useState("neither");
 
   const username = user ? user.username : user;
 
-  useEffect(() => () => setFormVisible('neither'), [username]);
+  useEffect(() => () => setFormVisible("neither"), [username]);
 
   return user ? (
     <>
@@ -21,13 +21,13 @@ const Navigation = ({ user, toggler }) => {
     :(
       <>
         <Notification />
-        <div style={{ display: 'flex', marginTop: '1em' }}>
-          { formVisible !== 'Log in' &&
-            <Togglable setFormVisible={setFormVisible} style={{ marginRight: '2em' }} buttonLabel='Sign up' visible={false}>
+        <div style={{ display: "flex", marginTop: "1em" }}>
+          { formVisible !== "Log in" &&
+            <Togglable setFormVisible={setFormVisible} style={{ marginRight: "2em" }} buttonLabel='Sign up' visible={false}>
               <SignUp />
             </Togglable>
           }
-          { formVisible !== 'Sign up' &&
+          { formVisible !== "Sign up" &&
             <Togglable setFormVisible={setFormVisible} buttonLabel='Log in' visible={false}>
               <Login />
             </Togglable>

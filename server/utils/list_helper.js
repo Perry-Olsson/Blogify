@@ -7,11 +7,11 @@
 //   { _id: '5a422bc61b54a676234d17fc', title: 'Type wars', author: 'Robert C. Martin', url: 'http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html', likes: 2, __v: 0 }
 // ]
 
-const getTopAuthor = (blogs, metric='blogs') => {
+const getTopAuthor = (blogs, metric="blogs") => {
   if (!blogs.length)
-    return 'No Blogs';
+    return "No Blogs";
   const blogTracker = {};
-  let topAuthor = '';
+  let topAuthor = "";
   let max = 0;
   blogs.forEach(blog => {
     if (!blogTracker[blog.author])
@@ -24,7 +24,7 @@ const getTopAuthor = (blogs, metric='blogs') => {
     }
   });
   const returnObject = {
-    'author': topAuthor
+    "author": topAuthor
   };
   returnObject[metric] = max;
   return returnObject;
@@ -60,7 +60,7 @@ const mostBlogs = blogs => {
 };
 
 const mostLikes = blogs => {
-  return getTopAuthor(blogs, 'likes');
+  return getTopAuthor(blogs, "likes");
 };
 
 module.exports = {

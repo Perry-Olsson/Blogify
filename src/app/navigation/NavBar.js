@@ -1,11 +1,11 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { logoutUser } from '../../reducers/userReducer';
-import { clearNotification } from '../../reducers/notificationReducer';
-import { StyledLink } from '../../components/styledComponents';
-import  CustomToggle  from '../../components/CustomToggle';
-import { Button, Navbar, Nav, Dropdown } from 'react-bootstrap';
-import './nav.css';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../reducers/userReducer";
+import { clearNotification } from "../../reducers/notificationReducer";
+import { StyledLink } from "../../components/styledComponents";
+import  CustomToggle  from "../../components/CustomToggle";
+import { Button, Navbar, Nav, Dropdown } from "react-bootstrap";
+import "./nav.css";
 
 const NavBar = ({ user, toggler }) => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const NavBar = ({ user, toggler }) => {
     <Navbar
       collapseOnSelect
       expand="lg"
-      style={{ margin: '1em 0', borderRadius: '2px' }}
+      style={{ margin: "1em 0", borderRadius: "2px" }}
       className="navBar"
     >
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -33,7 +33,7 @@ const NavBar = ({ user, toggler }) => {
           </Nav.Link>
         </Nav>
         <Nav>
-          <Nav.Link href="#" style={{ marginRight: '1em' }}>
+          <Nav.Link href="#" style={{ marginRight: "1em" }}>
             <div className="navBar">logged in as {user.username}</div>
           </Nav.Link>
           <Button
@@ -43,12 +43,12 @@ const NavBar = ({ user, toggler }) => {
           >
             logout
           </Button>
-          <Dropdown style={{ alignSelf: 'center' }}>
+          <Dropdown style={{ alignSelf: "center" }}>
             <Dropdown.Toggle as={CustomToggle}
               id='nav'
               size='sm'
               variant="dark"
-              style={{ marginLeft: '0.8em' }}
+              style={{ marginLeft: "0.8em" }}
             >
             </Dropdown.Toggle>
 

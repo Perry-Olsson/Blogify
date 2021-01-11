@@ -1,23 +1,23 @@
-const mongoose = require('mongoose');
-const config = require('./utils/config');
-const Blog = require('./models/blog');
-const User = require('./models/user');
-const helper = require('./tests/test_helper');
-const bcrypt = require('bcrypt');
+const mongoose = require("mongoose");
+const config = require("./utils/config");
+const Blog = require("./models/blog");
+const User = require("./models/user");
+const helper = require("./tests/test_helper");
+const bcrypt = require("bcrypt");
 
 const args = process.argv.length;
 
-if (args > 3) throw new Error('accepts only one argument');
+if (args > 3) throw new Error("accepts only one argument");
 
 const mongoUrl = config.MONGODB_URI;
 
 mongoose
   .connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('connected'))
-  .catch(() => console.log('not connected'));
+  .then(() => console.log("connected"))
+  .catch(() => console.log("not connected"));
 
 const main = async () => {
-  if (process.argv[2] === 'reset') {
+  if (process.argv[2] === "reset") {
     await Blog.deleteMany({});
     await User.deleteMany({});
 
@@ -34,7 +34,7 @@ const main = async () => {
       await newUser.save();
     }
 
-    const johnyboy = await User.findOne({ username: 'Johnyboy' });
+    const johnyboy = await User.findOne({ username: "Johnyboy" });
     for (let blog of helper.initialBlogs) {
       const newBlog = new Blog({ ...blog, user: johnyboy._id });
       johnyboy.blogs.push(newBlog.id);

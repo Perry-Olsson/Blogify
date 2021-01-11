@@ -1,19 +1,19 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import Togglable from '../../togglable/Togglable';
-import AddComment from './AddComment';
-import CustomToggle from '../../../components/CustomToggle';
-import { Dropdown } from 'react-bootstrap';
-import './blogProfile.css';
+import React from "react";
+import { useSelector } from "react-redux";
+import Togglable from "../../togglable/Togglable";
+import AddComment from "./AddComment";
+import CustomToggle from "../../../components/CustomToggle";
+import { Dropdown } from "react-bootstrap";
+import "./blogProfile.css";
 
 const optionsButtonContainerStyle = {
-  lineHeight: '2',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  width: '33em',
-  margin: '1em 0',
-  padding: '0.5em 0'
+  lineHeight: "2",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  width: "33em",
+  margin: "1em 0",
+  padding: "0.5em 0"
 };
 
 const CommentSection = ({ blog, del, createComment }) => {
@@ -25,15 +25,15 @@ const CommentSection = ({ blog, del, createComment }) => {
         <ul>
           {blog.comments.map((comment, i) => (
             <div className='optionsButtonContainer' style={optionsButtonContainerStyle} key={i}>
-              <li style={{ width: '29em' }}>
+              <li style={{ width: "29em" }}>
                 {comment.comment}
               </li>
               {user && user.username === comment.user && (
-                <Dropdown style={{ alignSelf: 'center' }}>
+                <Dropdown style={{ alignSelf: "center" }}>
                   <Dropdown.Toggle as={CustomToggle}
                     id='nav'
                     size='sm'
-                    style={{ marginLeft: '0.8em' }}
+                    style={{ marginLeft: "0.8em" }}
                     className='optionsButton danger'
                   >
                   </Dropdown.Toggle>
@@ -42,7 +42,7 @@ const CommentSection = ({ blog, del, createComment }) => {
                       className='optionsButtonContainer'
                       as='button'
                       onClick={() => del(comment.id)}
-                      style={{ color: 'red' }}
+                      style={{ color: "red" }}
                     >
                     Delete Comment
                     </Dropdown.Item>

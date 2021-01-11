@@ -1,7 +1,7 @@
-import React from 'react';
-import Togglable from '../../togglable/Togglable';
-import AddBlog from './addBlog/AddBlog';
-import BlogList from './blogList/BlogList';
+import React from "react";
+import Togglable from "../../togglable/Togglable";
+import AddBlog from "./addBlog/AddBlog";
+import BlogList from "./blogList/BlogList";
 
 const Blogs = ({ user, blogs }) => (
   <div>
@@ -10,7 +10,7 @@ const Blogs = ({ user, blogs }) => (
         <AddBlog />
       </Togglable>
     )}
-    <hr style={{ marginTop: '1.5em' }} />
+    <hr style={{ marginTop: "1.5em" }} />
     {blogs && <BlogList blogs={blogs} user={user} />}
   </div>
 );
