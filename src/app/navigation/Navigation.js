@@ -17,24 +17,32 @@ const Navigation = ({ user, toggler }) => {
       <NavBar user={user} toggler={toggler} />
       <Notification />
     </>
-  )
-    :(
-      <>
-        <Notification />
-        <div style={{ display: "flex", marginTop: "1em" }}>
-          { formVisible !== "Log in" &&
-            <Togglable setFormVisible={setFormVisible} style={{ marginRight: "2em" }} buttonLabel='Sign up' visible={false}>
-              <SignUp />
-            </Togglable>
-          }
-          { formVisible !== "Sign up" &&
-            <Togglable setFormVisible={setFormVisible} buttonLabel='Log in' visible={false}>
-              <Login />
-            </Togglable>
-          }
-        </div>
-      </>
-    );
+  ) : (
+    <>
+      <Notification />
+      <div style={{ display: "flex", marginTop: "1em" }}>
+        {formVisible !== "Log in" && (
+          <Togglable
+            setFormVisible={setFormVisible}
+            style={{ marginRight: "2em" }}
+            buttonLabel="Sign up"
+            visible={false}
+          >
+            <SignUp />
+          </Togglable>
+        )}
+        {formVisible !== "Sign up" && (
+          <Togglable
+            setFormVisible={setFormVisible}
+            buttonLabel="Log in"
+            visible={false}
+          >
+            <Login toggler={toggler} />
+          </Togglable>
+        )}
+      </div>
+    </>
+  );
 };
 
 export default Navigation;

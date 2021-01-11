@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { logoutUser } from "../../reducers/userReducer";
 import { clearNotification } from "../../reducers/notificationReducer";
 import { StyledLink } from "../../components/styledComponents";
-import  CustomToggle  from "../../components/CustomToggle";
+import CustomToggle from "../../components/CustomToggle";
 import { Button, Navbar, Nav, Dropdown } from "react-bootstrap";
 import "./nav.css";
 
@@ -12,6 +12,7 @@ const NavBar = ({ user, toggler }) => {
 
   const handleLogout = () => {
     dispatch(clearNotification());
+    toggler();
     dispatch(logoutUser());
   };
 
@@ -44,19 +45,20 @@ const NavBar = ({ user, toggler }) => {
             logout
           </Button>
           <Dropdown style={{ alignSelf: "center" }}>
-            <Dropdown.Toggle as={CustomToggle}
-              id='nav'
-              size='sm'
+            <Dropdown.Toggle
+              as={CustomToggle}
+              id="nav"
+              size="sm"
               variant="dark"
               style={{ marginLeft: "0.8em" }}
-            >
-            </Dropdown.Toggle>
+            ></Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item as='button' onClick={() => toggler(user.id)}>Change theme</Dropdown.Item>
+              <Dropdown.Item as="button" onClick={() => toggler(user.id)}>
+                Change theme
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-
         </Nav>
       </Navbar.Collapse>
     </Navbar>

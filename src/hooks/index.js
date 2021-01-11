@@ -92,13 +92,21 @@ export const useDarkMode = userTheme => {
   const [theme, setTheme] = useState(userTheme || "light");
 
   const setMode = async (mode, id) => {
-    const userFromDb = await userService.setTheme({ theme: mode }, id);
-    window.localStorage.setItem("theme", userFromDb.theme);
-    setTheme(userFromDb.theme);
+    if (id) {
+      const userFromDb = await userService.setTheme({ theme: mode }, id);
+      window.localStorage.setItem("theme", userFromDb.theme);
+      setTheme(userFromDb.theme);
+    } else {
+      window.localStorage.removeItem("theme");
+      setTheme("light");
+    }
   };
 
-  const themeToggler = userId => {
-    theme === "light" ? setMode("dark", userId) : setMode("light", userId);
+  const themeToggler = (userId, mode) => {
+    if (mode) {
+      setMode(mode, userId);
+    } else
+      theme === "light" ? setMode("dark", userId) : setMode("light", userId);
   };
 
   return [theme, themeToggler];

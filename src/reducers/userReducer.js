@@ -65,7 +65,12 @@ export const setLikes = likes => {
   };
 };
 
-export const loginUser = (username, password, message = "login successful") => {
+export const loginUser = ({
+  username,
+  password,
+  toggler,
+  message = "login successful",
+}) => {
   return async dispatch => {
     try {
       const user = await loginService.login({ username, password });
@@ -74,6 +79,7 @@ export const loginUser = (username, password, message = "login successful") => {
         type: "LOGIN",
         user,
       });
+      toggler(user.id);
       window.localStorage.setItem(
         "loggedUser",
         JSON.stringify({

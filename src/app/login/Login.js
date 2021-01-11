@@ -7,14 +7,16 @@ import { StyledInput } from "../../components/styledComponents";
 import { Button } from "react-bootstrap";
 import "./login.css";
 
-const Login = () => {
+const Login = ({ toggler }) => {
   const dispatch = useDispatch();
   const [username, resetUsername] = useField("text", "username");
   const [password, resetPassword] = useField("password", "password");
 
   const handleLogin = async event => {
     event.preventDefault();
-    dispatch(loginUser(username.value, password.value));
+    dispatch(
+      loginUser({ username: username.value, password: password.value, toggler })
+    );
     resetUsername();
     resetPassword();
   };
@@ -23,13 +25,13 @@ const Login = () => {
     <div className="loginForm-cy">
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
-        <div className='field'>
+        <div className="field">
           <label>username</label>
-          <StyledInput style={{ height: "2em", width: "17em" }} { ...username } />
+          <StyledInput style={{ height: "2em", width: "17em" }} {...username} />
         </div>
-        <div className='field'>
+        <div className="field">
           <label>password</label>
-          <StyledInput style={{ height: "2em", width: "17em" }} { ...password } />
+          <StyledInput style={{ height: "2em", width: "17em" }} {...password} />
         </div>
         <Button id="loginButton" className="login" type="submit" variant="dark">
           login
