@@ -2,12 +2,12 @@ let messageId = null;
 
 const notificationReducer = (state = null, action) => {
   switch(action.type) {
-  case "NOTIFY":
-    return  action.notification;
-  case "WIPE":
-    return null;
-  default:
-    return state;
+    case "NOTIFY":
+      return  action.notification;
+    case "WIPE":
+      return null;
+    default:
+      return state;
   }
 };
 

@@ -6,18 +6,18 @@ import { likeBlog } from "./blogReducer";
 
 const userReducer = (state = null, action) => {
   switch (action.type) {
-  case "LOGIN":
-    return action.user;
-  case "SET":
-    return action.user;
-  case "SET_LIKES":
-    return { ...state, likes: action.likes };
-  case "LIKE":
-    return action.user;
-  case "LOGOUT":
-    return null;
-  default:
-    return state;
+    case "LOGIN":
+      return action.user;
+    case "SET":
+      return action.user;
+    case "SET_LIKES":
+      return { ...state, likes: action.likes };
+    case "LIKE":
+      return action.user;
+    case "LOGOUT":
+      return null;
+    default:
+      return state;
   }
 };
 
@@ -29,7 +29,12 @@ export const createUser = newUser => {
     } catch (exception) {
       dispatch(
         createNotification(
-          { type: "danger", message: (exception.response.data && exception.response.data.error) || exception.message },
+          {
+            type: "danger",
+            message:
+              (exception.response.data && exception.response.data.error) ||
+              exception.message,
+          },
           5
         )
       );
@@ -55,12 +60,12 @@ export const setLikes = likes => {
   return dispatch => {
     dispatch({
       type: "SET_LIKES",
-      likes
+      likes,
     });
   };
 };
 
-export const loginUser = (username, password, message="login successful") => {
+export const loginUser = (username, password, message = "login successful") => {
   return async dispatch => {
     try {
       const user = await loginService.login({ username, password });
@@ -69,14 +74,24 @@ export const loginUser = (username, password, message="login successful") => {
         type: "LOGIN",
         user,
       });
-      window.localStorage.setItem("loggedUser", JSON.stringify({ username: user.username, id: user.id, token: user.token }));
-      dispatch(
-        createNotification({ type: "success", message }, 5)
+      window.localStorage.setItem(
+        "loggedUser",
+        JSON.stringify({
+          username: user.username,
+          id: user.id,
+          token: user.token,
+        })
       );
+      dispatch(createNotification({ type: "success", message }, 5));
     } catch (exception) {
       dispatch(
         createNotification(
-          { type: "danger", message: (exception.response.data && exception.response.data.error) || exception.message },
+          {
+            type: "danger",
+            message:
+              (exception.response.data && exception.response.data.error) ||
+              exception.message,
+          },
           5
         )
       );
@@ -84,12 +99,15 @@ export const loginUser = (username, password, message="login successful") => {
   };
 };
 
-export const saveLike = (userId, blog) => {
+export const saveLike = (user, blog) => {
   return async dispatch => {
     try {
-      const user = await userService.like(userId, blog.id);
       dispatch({ type: "LIKE", user });
       dispatch(likeBlog(blog));
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        userService.like(user.id, blog.id);
+      }, 500);
     } catch (e) {
       dispatch(
         createNotification(
@@ -101,12 +119,17 @@ export const saveLike = (userId, blog) => {
   };
 };
 
-export const saveRemoveLike = (userId, blog) => {
+let timeoutId;
+
+export const saveRemoveLike = (user, blog) => {
   return async dispatch => {
     try {
-      const user = await userService.removeLike(userId, blog.id);
       dispatch({ type: "LIKE", user });
       dispatch(likeBlog(blog));
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        userService.removeLike(user.id, blog.id);
+      }, 500);
     } catch (e) {
       dispatch(
         createNotification(

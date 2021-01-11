@@ -1,3 +1,4 @@
+/* eslint-disable */
 import blogService from "../services/blogs";
 import blogHelper from "../utils/blogHelper";
 import { createNotification } from "./notificationReducer";
@@ -5,26 +6,26 @@ import { push } from "connected-react-router";
 
 const blogReducer = (state = [], action) => {
   switch (action.type) {
-  case "INIT_BLOGS":
-    return action.blogs;
-  case "ADD_BLOG":
-    return blogHelper.mapAndSortBlogs([...state, action.blog]);
-  case "LIKE_BLOG":
-    return blogHelper.mapAndSortBlogs(state, action.updatedBlog);
-  case "DELETE_BLOG":
-    return state.filter(blog => blog.id !== action.id);
-  case "COMMENT":
-    return blogHelper.mapAndSortBlogs(state, action.updatedBlog.data);
-  case "DELETE_COMMENT":
-    return state.map(blog => {
-      if (blog.id === action.blogId)
-        blog.comments = blog.comments.filter(
-          comment => comment.id !== action.commentId
-        );
-      return blog;
-    });
-  default:
-    return state;
+    case "INIT_BLOGS":
+      return action.blogs;
+    case "ADD_BLOG":
+      return blogHelper.mapAndSortBlogs([...state, action.blog]);
+    case "LIKE_BLOG":
+      return blogHelper.mapAndSortBlogs(state, action.updatedBlog);
+    case "DELETE_BLOG":
+      return state.filter(blog => blog.id !== action.id);
+    case "COMMENT":
+      return blogHelper.mapAndSortBlogs(state, action.updatedBlog.data);
+    case "DELETE_COMMENT":
+      return state.map(blog => {
+        if (blog.id === action.blogId)
+          blog.comments = blog.comments.filter(
+            comment => comment.id !== action.commentId
+          );
+        return blog;
+      });
+    default:
+      return state;
   }
 };
 
@@ -48,22 +49,16 @@ export const addBlog = blog => {
 export const likeBlog = blog => {
   return async dispatch => {
     try {
-      const updatedBlog = await blogService.updateBlog({
-        ...blog,
-        user: blog.user.id,
-      });
-      dispatch({
-        type: "LIKE_BLOG",
-        updatedBlog,
-      });
+      dispatch({ type: "LIKE_BLOG", updatedBlog: blog });
+      await blogService.updateBlog({ ...blog, user: blog.user.id });
     } catch (exception) {
       exception.response
         ? dispatch(
-          createNotification(
-            { type: "danger", message: exception.response.data.error },
-            5
+            createNotification(
+              { type: "danger", message: exception.response.data.error },
+              5
+            )
           )
-        )
         : console.log(exception);
     }
   };
@@ -103,11 +98,11 @@ export const addComment = comment => {
     } catch (exception) {
       exception.response
         ? dispatch(
-          createNotification(
-            { type: "danger", message: exception.response.data.error },
-            5
+            createNotification(
+              { type: "danger", message: exception.response.data.error },
+              5
+            )
           )
-        )
         : console.log(exception);
     }
   };
@@ -125,11 +120,11 @@ export const deleteComment = (blogId, commentId) => {
     } catch (exception) {
       exception.response
         ? dispatch(
-          createNotification(
-            { type: "danger", message: exception.response.data.error },
-            5
+            createNotification(
+              { type: "danger", message: exception.response.data.error },
+              5
+            )
           )
-        )
         : console.log(exception);
     }
   };

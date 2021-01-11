@@ -1,7 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import userService  from "../services/users";
-import { saveLike, saveRemoveLike, setLikes, logoutUser, createNotification } from "../reducers";
+import userService from "../services/users";
+import {
+  saveLike,
+  saveRemoveLike,
+  setLikes,
+  logoutUser,
+  createNotification,
+} from "../reducers";
 
 export const useLikeBlog = (blog, user) => {
   const dispatch = useDispatch();
@@ -9,13 +15,15 @@ export const useLikeBlog = (blog, user) => {
   if (!blog || !user) return null;
 
   const like = () => {
-    blog.likes++;
-    dispatch(saveLike(user, blog));
+    const updatedBlog = { ...blog, likes: blog.likes + 1 };
+    user.likes[blog.id] = true;
+    dispatch(saveLike(user, updatedBlog));
   };
 
   const removeLike = () => {
-    blog.likes--;
-    dispatch(saveRemoveLike(user, blog));
+    const updatedBlog = { ...blog, likes: blog.likes - 1 };
+    delete user.likes[blog.id];
+    dispatch(saveRemoveLike(user, updatedBlog));
   };
   return [like, removeLike];
 };
@@ -46,26 +54,33 @@ export const useField = (type, id) => {
 export const useGetAndSetLikes = () => {
   const dispatch = useDispatch();
 
-  const handleError = (error) => {
+  const handleError = error => {
     if (error.response) {
       if (error.response.data.error === "User not found")
         dispatch(logoutUser());
       else
-        dispatch(createNotification({ type: "danger", message: error.response.data.error }));
-    }
-    else {
+        dispatch(
+          createNotification({
+            type: "danger",
+            message: error.response.data.error,
+          })
+        );
+    } else {
       dispatch(
-        createNotification({ type: "danger", message: "Oops something went wrong on the server :(" })
+        createNotification({
+          type: "danger",
+          message: "Oops something went wrong on the server :(",
+        })
       );
       console.log(error.response);
     }
   };
 
-  const main = async (user) => {
+  const main = async user => {
     try {
       const response = await userService.getLikes(user);
       dispatch(setLikes(response.likes));
-    } catch(e) {
+    } catch (e) {
       handleError(e);
     }
   };
@@ -73,16 +88,16 @@ export const useGetAndSetLikes = () => {
   return main;
 };
 
-export const useDarkMode = (userTheme) => {
+export const useDarkMode = userTheme => {
   const [theme, setTheme] = useState(userTheme || "light");
 
   const setMode = async (mode, id) => {
-    const userFromDb =  await userService.setTheme({ theme: mode }, id);
+    const userFromDb = await userService.setTheme({ theme: mode }, id);
     window.localStorage.setItem("theme", userFromDb.theme);
     setTheme(userFromDb.theme);
   };
 
-  const themeToggler = (userId) => {
+  const themeToggler = userId => {
     theme === "light" ? setMode("dark", userId) : setMode("light", userId);
   };
 

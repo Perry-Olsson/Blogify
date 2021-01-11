@@ -28,10 +28,10 @@ const OptionsIcon = (props) => {
   let iconSize = null;
   let dotSize = null;
   switch (props.size) {
-  case "sm": iconSize = "2em"; dotSize = "6px"; break;
-  case "md": iconSize = "2.5em"; dotSize ="8px"; break;
-  case "lg": iconSize = "3em"; dotSize = "10px"; break;
-  default: iconSize = "2em";
+    case "sm": iconSize = "2em"; dotSize = "6px"; break;
+    case "md": iconSize = "2.5em"; dotSize ="8px"; break;
+    case "lg": iconSize = "3em"; dotSize = "10px"; break;
+    default: iconSize = "2em";
   }
 
 
