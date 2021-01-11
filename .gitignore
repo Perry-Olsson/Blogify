@@ -29,6 +29,6 @@ for_testing.js
 
 .env
 
-.eslintrc.js
+/.eslintcache
 
 /.VSCodCounter
