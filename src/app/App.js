@@ -42,7 +42,7 @@ const App = () => {
     <ThemeProvider theme={theme === "light" ? lightMode : darkMode}>
       <GlobalStyles />
       <div className="container">
-        <h1 className="logo">Blogbook</h1>
+        <h1 className="logo">Blogify</h1>
         <Navigation toggler={toggler} user={user} />
         <Switch>
           <Route path="/users">
