@@ -26,12 +26,12 @@ const userSchema = mongoose.Schema({
   ],
   likes: {
     type: Map,
-    of: String,
+    of: Boolean,
   },
   theme: {
     type: String,
-    default: "light"
-  }
+    default: "light",
+  },
 });
 
 userSchema.plugin(uniqueValidator);

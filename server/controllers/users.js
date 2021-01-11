@@ -21,7 +21,7 @@ usersRouter.get("/", async (request, response) => {
     title: 1,
     url: 1,
     likes: 1,
-    theme: 1
+    theme: 1,
   });
   response.json(users);
 });
@@ -37,7 +37,7 @@ usersRouter.post("/like/:userId/:blogId", async (request, response) => {
     response
       .status(400)
       .json({ error: "blog as been liked by this user already" });
-  user.likes.set(blogId, "true");
+  user.likes.set(blogId, true);
   const userForResponse = await user.save();
   response.json(userForResponse);
 });

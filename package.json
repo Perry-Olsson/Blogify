@@ -31,7 +31,7 @@
   "scripts": {
     "tester": "gnome-terminal && ls",
     "start": "cross-env NODE_ENV=production node server.js",
-    "start:client": "react-scripts start",
+    "start:client": "set PORT=3000 && react-scripts start",
     "dev": "cross-env NODE_ENV=development nodemon server.js & npm run start:client",
     "build": "react-scripts build",
     "serve-build": "npm run build && (cd server && npm start)",
