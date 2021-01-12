@@ -79,7 +79,7 @@ export const loginUser = ({
         type: "LOGIN",
         user,
       });
-      toggler(user.id);
+      toggler(user.id, user.theme);
       window.localStorage.setItem(
         "loggedUser",
         JSON.stringify({
@@ -95,7 +95,7 @@ export const loginUser = ({
           {
             type: "danger",
             message:
-              (exception.response.data && exception.response.data.error) ||
+              (exception.response && exception.response.data && exception.response.data.error) ||
               exception.message,
           },
           5

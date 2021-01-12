@@ -29,7 +29,7 @@ const OptionsIcon = (props) => {
   let dotSize = null;
   switch (props.size) {
     case "sm": iconSize = "2em"; dotSize = "6px"; break;
-    case "md": iconSize = "2.5em"; dotSize ="8px"; break;
+    case "md": iconSize = "2.5em"; dotSize = "8px"; break;
     case "lg": iconSize = "3em"; dotSize = "10px"; break;
     default: iconSize = "2em";
   }
@@ -39,7 +39,7 @@ const OptionsIcon = (props) => {
   if (props.variant) theme = props.variant;
 
   return (
-    <Container {...props} className={`${props.className || ""} ${theme}Container`}iconSize={iconSize}>
+    <Container {...props} className={`${props.className || ""} ${theme}Container`} iconSize={iconSize}>
       <Dot className={theme} dotSize={dotSize} />
       <Dot className={theme} dotSize={dotSize} />
       <Dot className={theme} dotSize={dotSize} />

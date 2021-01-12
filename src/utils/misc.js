@@ -1,4 +1,4 @@
 export const getLocalTheme = () => {
-  return window.localStorage.getItem("theme");
+  const user = JSON.parse(window.localStorage.getItem("loggedUser"));
+  return user ? user.theme : "light";
 };
-

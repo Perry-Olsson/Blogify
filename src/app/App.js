@@ -5,7 +5,6 @@ import { Switch, Route } from "react-router-dom";
 // misc
 import { initializeBlogs, setUser } from "../reducers";
 import { useDarkMode, useGetAndSetLikes } from "../hooks";
-import { getLocalTheme } from "../utils/misc";
 // Components
 import Navigation from "./navigation/Navigation";
 import BlogPage from "./blogPage/BlogPage";
@@ -21,7 +20,7 @@ const App = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   const getAndSetLikes = useGetAndSetLikes();
-  const [theme, toggler] = useDarkMode(getLocalTheme());
+  const [theme, toggler] = useDarkMode("light");
 
   useEffect(() => {
     dispatch(initializeBlogs());
@@ -32,11 +31,12 @@ const App = () => {
       const loggedUser = window.localStorage.getItem("loggedUser");
       if (loggedUser) {
         let localUser = JSON.parse(loggedUser);
+        toggler(localUser.id, localUser.theme);
         dispatch(setUser(localUser));
         getAndSetLikes(localUser);
       }
     }
-  }, [dispatch, getAndSetLikes, user]);
+  }, [dispatch, getAndSetLikes, user, toggler]);
 
   return (
     <ThemeProvider theme={theme === "light" ? lightMode : darkMode}>
