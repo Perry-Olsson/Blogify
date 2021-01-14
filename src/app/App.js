@@ -20,7 +20,7 @@ const App = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   const getAndSetLikes = useGetAndSetLikes();
-  const [theme, toggler] = useDarkMode("light");
+  const [theme, toggler] = useDarkMode((user && user.theme) || "light");
 
   useEffect(() => {
     dispatch(initializeBlogs());
