@@ -25,7 +25,13 @@ export const createUser = newUser => {
   return async dispatch => {
     try {
       const user = await userService.create(newUser);
-      dispatch(loginUser(user.username, newUser.password, "Account created!"));
+      dispatch(
+        loginUser({
+          username: user.username,
+          password: newUser.password,
+          message: "Account created!",
+        })
+      );
     } catch (exception) {
       dispatch(
         createNotification(
@@ -79,7 +85,9 @@ export const loginUser = ({
         type: "LOGIN",
         user,
       });
-      toggler(user.id, user.theme);
+
+      toggler && toggler(user.id, user.theme);
+
       window.localStorage.setItem(
         "loggedUser",
         JSON.stringify({
@@ -95,7 +103,9 @@ export const loginUser = ({
           {
             type: "danger",
             message:
-              (exception.response && exception.response.data && exception.response.data.error) ||
+              (exception.response &&
+                exception.response.data &&
+                exception.response.data.error) ||
               exception.message,
           },
           5
