@@ -31,10 +31,10 @@
   "scripts": {
     "tester": "gnome-terminal && ls",
     "start": "cross-env NODE_ENV=production node server.js",
-    "start:client": "set PORT=3000 && react-scripts start",
-    "dev": "cross-env NODE_ENV=development nodemon server.js & npm run start:client",
+    "start:client": "react-scripts start",
+    "dev": "cross-env NODE_ENV=development npm run start:client & NODE_ENV=development nodemon server.js",
     "build": "react-scripts build",
-    "serve-build": "npm run build && (cd server && npm start)",
+    "serve-build": "npm run build && npm start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",

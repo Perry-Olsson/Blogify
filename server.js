@@ -51,6 +51,8 @@ app.use(middleware.errorHandler);
 
 const server = http.createServer(app);
 
-server.listen(config.PORT, () => {
+const isDev = process.env.NODE_ENV === "development";
+
+server.listen(isDev ? 3001 : config.PORT, () => {
   logger.info(`Server is running on port ${config.PORT}`);
 });

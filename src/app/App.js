@@ -1,20 +1,15 @@
-// Deps
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Switch, Route } from "react-router-dom";
-// misc
+import { Switch, Route, Link } from "react-router-dom";
 import { initializeBlogs, setUser } from "../reducers";
 import { useDarkMode, useGetAndSetLikes } from "../hooks";
-// Components
 import Navigation from "./navigation/Navigation";
 import BlogPage from "./blogPage/BlogPage";
 import UserPage from "./users/UserPage";
-// Style
-import { ThemeProvider } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../components/gobalStyles";
 import { lightMode, darkMode } from "../components/themes";
 import "./App.css";
-// import TestComponent  from '../TestComponent';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -41,8 +36,8 @@ const App = () => {
   return (
     <ThemeProvider theme={theme === "light" ? lightMode : darkMode}>
       <GlobalStyles />
-      <div className="container">
-        <h1 className="logo">Blogify</h1>
+      <Container>
+        <StyledLogo to="/"><h1 className="logo">Blogify</h1></StyledLogo>
         <Navigation toggler={toggler} user={user} />
         <Switch>
           <Route path="/users">
@@ -52,10 +47,29 @@ const App = () => {
             <BlogPage user={user} />
           </Route>
         </Switch>
-      </div>
-      {/* <TestComponent /> */}
+      </Container>
     </ThemeProvider>
   );
 };
+
+const StyledLogo = styled(Link)`
+  color: ${({ theme }) => theme.text};
+  width: fit-content;
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
+
+const Container = styled.div`
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  @media(min-width: 990px) {
+    padding: 0 10%;
+  }
+`;
 
 export default App;

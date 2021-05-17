@@ -1,21 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
+import styled from "styled-components";
 
 const Blog = ({ blog }) => (
-  <Card
-    style={{
-      width: "40rem",
-      margin: "2em 0",
-      borderColor: "#aaaaaa",
-      background: "inherit",
-    }}
+  <StyledCard
     className={`${blog.title.replace(/ /gm, "-")}`}
   >
     <Card.Body
       style={{
         display: "flex",
-        height: "7em",
+        minHeight: "7em",
         justifyContent: "space-between",
         alignItems: "center",
       }}
@@ -32,7 +27,14 @@ const Blog = ({ blog }) => (
         </Button>
       </Link>
     </Card.Body>
-  </Card>
+  </StyledCard>
 );
+
+const StyledCard = styled(Card)`
+  max-width: 990px;
+  margin: 2em 0;
+  border-color: #aaaaaa;
+  background: inherit;
+`;
 
 export default Blog;

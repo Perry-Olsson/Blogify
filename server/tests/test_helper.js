@@ -13,7 +13,7 @@ const initialBlogs = [
 const initialUsers = [
   { username: "SamIam", name: "Samantha", password: "samspassword" },
   { username: "Johnyboy", name: "John", password: "johnspassword" },
-  { username: "bigspeedoguy", name: "rob", password: "needforspeedo" },
+  { username: "speed_demon", name: "rob", password: "needforspeed" },
   { username: "turkeyjerky", name: "oboyoberto", password: "mmmmmmmmm...thatsgood" }
 ];
 
