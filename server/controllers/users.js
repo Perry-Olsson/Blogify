@@ -28,7 +28,7 @@ usersRouter.get("/", async (request, response) => {
 
 usersRouter.post("/like/:userId/:blogId", async (request, response) => {
   const blogId = request.params.blogId;
-  const decodedToken = jwt.verify(request.token, process.env.SECRET);
+  const decodedToken = jwt.verify(request.token, process.env.JWT_SECRET);
   if (!request.token || !decodedToken.id) {
     return response.status(400).json({ error: "token missing or invalid" });
   }
@@ -44,7 +44,7 @@ usersRouter.post("/like/:userId/:blogId", async (request, response) => {
 
 usersRouter.post("/removeLike/:userId/:blogId", async (request, response) => {
   const blogId = request.params.blogId;
-  const decodedToken = jwt.verify(request.token, process.env.SECRET);
+  const decodedToken = jwt.verify(request.token, process.env.JWT_SECRET);
 
   if (!request.token || !decodedToken.id)
     return response.status(400).json({ error: "token missing or invalid" });
