@@ -6,6 +6,7 @@ import { clearNotification } from "../../reducers/notificationReducer";
 import { StyledLink } from "../../components/styledComponents";
 import CustomToggle from "../../components/CustomToggle";
 import { Button, Navbar, Nav, Dropdown } from "react-bootstrap";
+import styled from "styled-components";
 import "./nav.css";
 
 const NavBar = ({ user, toggler }) => {
@@ -39,7 +40,7 @@ const NavBar = ({ user, toggler }) => {
           </Nav>
           <Nav style={{ display: "flex", flexDirection: "row" }}>
             <Nav.Link href="#" style={{}}>
-              <StyledLink>logged in as {user.username}</StyledLink>
+              <DeadLink>logged in as {user.username}</DeadLink>
             </Nav.Link>
             <Button
               className="logout"
@@ -57,7 +58,9 @@ const NavBar = ({ user, toggler }) => {
                 style={{ marginLeft: "0.8em" }}
               ></Dropdown.Toggle>
 
-              <Dropdown.Menu style={{ border: "solid 5px", position: "absolute", left: "-100px", top: "40px" }}>
+              <Dropdown.Menu
+                style={{ position: "absolute", left: "-100px", top: "40px" }}
+              >
                 <Dropdown.Item as="button" onClick={() => toggler(user.id)}>
                   Change theme
                 </Dropdown.Item>
@@ -69,5 +72,17 @@ const NavBar = ({ user, toggler }) => {
     </>
   );
 };
+
+const DeadLink = styled.div`
+  color: ${({ theme }) => theme.navBar.text};
+  margin-right: 0.4em;
+  border: solid 1px ${({ theme }) => theme.background};
+  border-radius: 3px;
+  cursor: auto;
+  &:hover {
+    text-decoration: none;
+    color: ${({ theme }) => theme.navBar.text};
+  }
+`;
 
 export default NavBar;
