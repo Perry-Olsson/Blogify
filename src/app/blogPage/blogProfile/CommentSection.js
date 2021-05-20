@@ -26,7 +26,8 @@ const CommentSection = ({ blog, del, createComment }) => {
           {blog.comments.map((comment, i) => (
             <div className='optionsButtonContainer' style={optionsButtonContainerStyle} key={i}>
               <li style={{ width: "29em" }}>
-                {comment.comment}
+                <span>{comment.comment}</span>
+                <div style={{ marginLeft: "1em" }}>Comment by {comment.user}</div>
               </li>
               {user && user.username === comment.user && (
                 <Dropdown style={{ alignSelf: "center" }}>
