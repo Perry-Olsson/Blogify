@@ -28,8 +28,7 @@
 
 ## Reflection
 
-**TLDR**
-The project was built as the culmination of a MOOC (full stack open) I was going through. The process of creating a full stack app ended up being really enjoyable so I went ahead and added a few extra commonly expected features in modern forum/thread/social web applications.
+**TLDR**<br/>The project was built as the culmination of a MOOC (full stack open) I was going through. The process of creating a full stack app ended up being really enjoyable so I went ahead and added a few extra commonly expected features in modern forum/thread/social web applications.
 
 #### Inspiration
 
